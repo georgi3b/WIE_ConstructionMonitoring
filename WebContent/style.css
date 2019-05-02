@@ -1,0 +1,17 @@
+@charset "ISO-8859-1";
+
+#menu {
+	float: left;
+	width: 150px;
+	max-height: 100%;
+}
+
+#menu tr {
+	font-size: 13pt;
+}
+
+ #image{	
+ 	 max-width: 80%;
+ 	 max-height: 80%;
+	 margin: auto;
+}
