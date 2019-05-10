@@ -1,17 +1,21 @@
 @charset "ISO-8859-1";
 
-#menu {
-	float: left;
-	width: 150px;
-	max-height: 100%;
+.navbar{
+	background-color: #B03A2E;
+	font-size: 1em;
 }
 
-#menu tr {
-	font-size: 13pt;
+
+/* Carousel base class */
+.carousel {
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 15rem;
+  z-index: 10;
 }
 
- #image{	
- 	 max-width: 80%;
- 	 max-height: 80%;
-	 margin: auto;
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  background-color: #777;
 }
