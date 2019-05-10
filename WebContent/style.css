@@ -1,21 +1,42 @@
 @charset "ISO-8859-1";
 
-.navbar{
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+.navbar {
 	background-color: #B03A2E;
 	font-size: 1em;
 }
 
-
-/* Carousel base class */
 .carousel {
-}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-  bottom: 15rem;
-  z-index: 10;
+	height: 100%;
 }
 
-/* Declare heights because of positioning of img element */
+.carousel-inner {
+	height: 100%;
+}
+
 .carousel-item {
-  background-color: #777;
+	background-color: #777;
+	text-align: center;
+}
+
+.carousel-caption {
+	top: 50%;
+	transform: translateY(-50%);
+	bottom: initial;
+}
+
+.container {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.carousel-item > img {
+	width:100% !important;
+        min-width:100% !important;
+        height: auto;
+  margin: 0 auto;
 }
