@@ -40,3 +40,19 @@ html, body {
         height: auto;
   margin: 0 auto;
 }
+
+
+.about {
+	height: 100%;	
+	text-align: center;
+	padding-top:50px
+}
+.inner-about-anna, .inner-about-geo{
+	margin: 20px;
+	pdding=20px;
+	
+}
+.about > img {
+    vertical-align: middle;
+    border-style: none;
+}
