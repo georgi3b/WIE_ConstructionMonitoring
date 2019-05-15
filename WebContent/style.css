@@ -49,10 +49,37 @@ html, body {
 }
 .inner-about-anna, .inner-about-geo{
 	margin: 20px;
-	pdding=20px;
 	
 }
 .about > img {
     vertical-align: middle;
     border-style: none;
+}
+.profile {
+	height: 100%;	
+	padding-top:50px
+}
+.profile { display: -ms-flex; display: -webkit-flex; display: flex; }
+.profile>div { flex:1; }
+hr {
+	margin-top:-10px;
+}
+
+.user-img > img {
+    vertical-align: middle;
+    border-style: none;
+    padding:20px;
+}
+.user-img, .user-info{
+	margin: 20px;
+	
+}
+ul {
+  list-style-type: none;
+}
+
+ul li:before {
+  content: '\2014';
+  position: absolute;
+  margin-left: -35px;
 }
