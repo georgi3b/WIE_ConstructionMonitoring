@@ -17,7 +17,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="cover-functions.js"></script>
 <link rel="stylesheet" href="style.css">
-<title>Cover Page</title>
+<title>Projects</title>
 </head>
 <body>
 
@@ -38,8 +38,9 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Monitoring</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">SwissRe</a> <a
-								class="dropdown-item" href="#">Unibx</a>
+							<a class="dropdown-item" href="#">Swiss Re</a>
+							<a class="dropdown-item" href="#">IOC</a>
+							 <a class="dropdown-item" href="#">Unibx</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="exampleProjects.html">All projects</a>
 						</div></li>
@@ -65,17 +66,60 @@
 		<table class="table" id="data">
 			<thead>
 				<tr>
-					<th data-field='name'>Project Name</th>
-					<th data-field='supervisor'>Supervisor</th>
-					<th data-field='progress'>Progress</th>
+				<th data-field='proj_id'>Project Id</th>
+					<th data-field='proj_name'>Project Name</th>
+					<th data-field='u_mail'>Supervisor</th>
+					<th data-field='active'>Active</th>
+					<th data-field='proj_type'>Type</th>
+					<th data-field='company'>Company</th>
 					<th data-field='etc'>*insert other fields here*</th>
 					
 				</tr>
 			</thead>
 
 		</table>
-		<button class="btn btn-outline-success">New Project</button>
-		<div class="content" id="demo"></div>
+		<button class="btn btn-outline-success" onclick="newProjectForm()">New Project</button>
+		<div class="content" id="demo">
+			<form>
+				<div class="form-row">
+					<div class="col-lg-2 w-100">
+					<label for="proj_name">Name</label> <input type="text" id="proj_name" placeholder="" value=""
+							class="form-control" required>
+					</div>
+					<div class="col-lg-2 w-100">
+					<label for="company">Company</label> <input type="text" id="company" placeholder="" value=""
+							class="form-control" required>
+					</div>
+					<div class="col-lg-2 w-100">
+					<label for="proj_type">Type of project</label>
+					<select name="proj_type" class="form-control" required>
+					<option value="">Select a project type</option>
+							<option>BIM-FR</option>
+							<option>LOCATION-FR</option>
+							<option>General</option>
+							</select>
+					</div>
+					<div class="col-lg-2 w-100">
+					<label for="work_type">Main work types</label>
+					<select multiple name="work_type" class="form-control" size ="5" required>
+					<!-- I want the options to be taken from DB based on the indicated work_type -->
+					<option value="">Select a main work type</option>
+							<option>AB02</option>
+							<option>AB03</option>
+							<option>AB01-L</option>
+							</select>
+					</div>
+					
+				</div>
+			</form>
+		</div>
+		
 	</div>
+	<script>
+	function newProjectForm(){
+		form = document.getElementById("demo");
+		form.style.display='block';
+	}
+	</script>
 </body>
 </html>
