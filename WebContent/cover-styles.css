@@ -39,19 +39,17 @@ html, body{
 }
 
 #register{
-	display: table-cell;
 	display:none;
 	vertical-align: middle;
 	text-align: center;
 	background: rgba(0, 0, 0, 0.6); 	
 }
 
-#signin {
-	display: table-cell;
+#login{
+	display:none;
 	vertical-align: middle;
 	text-align: center;
 	background: rgba(0, 0, 0, 0.6); 
-	display:none;
 	
 }
 
@@ -86,17 +84,17 @@ html, body{
 .form-cover button[type="submit"]{
 	margin-top:20px;
 }
-.form-register input[type="email"] {
+.form-login input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-register input[type="password"] {
+.form-login input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.form-login input{
+.form-register input{
 	margin-bottom:10px;
 }
 

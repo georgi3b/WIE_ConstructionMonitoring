@@ -8,7 +8,7 @@ function gotoRegister(){
 	var signin=document.getElementById('login');
 	signin.style.display='none';
 	
-	var register=document.getElementById("register");
+	var register=document.getElementById('register');
 	register.style.display='table-cell';
 }	
 
@@ -19,7 +19,7 @@ function gotoLogin(){
 	var signin=document.getElementById('login');
 	signin.style.display='table-cell';
 	
-	var register=document.getElementById("register");
+	var register=document.getElementById('register');
 	register.style.display='none';
 }	
 
@@ -30,6 +30,6 @@ function gotoCover(){
 	var signin=document.getElementById('login');
 	signin.style.display='none';
 	
-	var register=document.getElementById("register");
+	var register=document.getElementById('register');
 	register.style.display='none';
 }	
