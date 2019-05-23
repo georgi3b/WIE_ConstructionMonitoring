@@ -83,19 +83,20 @@ html, body{
 	color:white;
 	padding-top:10px;
 }
-.form-signin input[type="email"] {
+.form-cover button[type="submit"]{
+	margin-top:20px;
+}
+.form-register input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"] {
+.form-register input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.form-signup input{
+.form-login input{
 	margin-bottom:10px;
 }
-.form-cover button[type="submit"]{
-	margin-top:20px;
-}
+

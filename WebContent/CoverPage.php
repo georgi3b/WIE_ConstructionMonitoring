@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +49,11 @@
 		</nav>
 	</header>
 
+	
+	
+	
 	<div id="home">
+		
 		<div class="inner-cover" id="cover">
 			<h1 class="cover-heading">BuildUp</h1>
 			<h3>Insert info about BuildUp here.</h3>
@@ -56,24 +63,27 @@
 		</div>
 		
 		<div id="register">
-			<form class="form-cover form-signup">
-				<h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+			<form class="form-cover form-register" action="user_register.php" method="post">
+				<h1 class="h3 mb-3 font-weight-normal">Register</h1>
 				<label for="inputName" class="sr-only">Username</label> <input
-					type="text" id="inputName" class="form-control"
+					type="text" name="username" id="inputName" class="form-control"
 					placeholder="Username" required autofocus>
 				
 				<label for="inputEmail" class="sr-only">Email address</label> <input
-					type="email" id="inputEmail" class="form-control"
+					type="email" name="email" id="inputEmail" class="form-control"
 					placeholder="Email address" required autofocus>
 					
 				<label for="inputPassword" class="sr-only">Password</label> <input
-					type="password" id="inputPassword" class="form-control"
+					type="password" name="password" id="inputPassword" class="form-control"
 					placeholder="Password" required>
-				<!-- <div class="checkbox mb-3">
-					<label> <input type="checkbox" value="remember-me">
-						Remember me
-					</label>
-				</div> -->
+					
+				<?php if (isset($_SESSION['coverError'])&&$_SESSION['coverError']=="register"): ?>
+    <div class="form-errors">
+        
+            <p style="color:red;">The inserted email is already in use by another user. Please choose another email.</p>
+        
+    </div>
+	<?php endif; ?>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
 					up</button>
 					
@@ -84,20 +94,23 @@
 			</form>
 		</div>
 
-		<div id="signin" class="text-center">
-			<form class="form-cover form-signin">
+		<div id="login" class="text-center">
+			<form class="form-cover form-login" action="user_login.php" method="post">
 				<h1 class="h3 mb-3 font-weight-normal">Log In</h1>
 				<label for="inputEmail" class="sr-only">Email address</label> <input
-					type="email" id="inputEmail" class="form-control"
-					placeholder="Email address" required autofocus> <label
+					type="email" name="email" id="inputMail" class="form-control"
+					placeholder="Username" required autofocus> <label
 					for="inputPassword" class="sr-only">Password</label> <input
-					type="password" id="inputPassword" class="form-control"
+					type="password" name="password" id="inputPassword" class="form-control"
 					placeholder="Password" required>
-				<!-- <div class="checkbox mb-3">
-					<label> <input type="checkbox" value="remember-me">
-						Remember me
-					</label>
-				</div> -->
+				<?php if (isset($_SESSION['coverError'])&& $_SESSION['coverError']=="login"): ?>
+    <div class="form-errors">
+        
+            <p style="color:red;">Wrong email or password.</p>
+        
+    </div>
+	
+<?php endif; ?>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Log
 					in</button>
 					
@@ -109,5 +122,18 @@
 		</div>
 		
 	</div>
+	
+<?php if (isset($_SESSION['coverError'])):?> 
+
+		<?php if ($_SESSION['coverError']=="login"):?>
+		<script type="text/javascript">gotoLogin();</script>
+		<?php else: ?>
+		<script type="text/javascript">gotoRegister();</script>
+		<?php endif; ?>
+	<?php else: ?>
+	
+	<script type="text/javascript">gotoCover();</script>
+	<?php endif; ?>
+	
 </body>
 </html>

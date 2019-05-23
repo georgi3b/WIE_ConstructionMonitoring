@@ -5,7 +5,7 @@ function gotoRegister(){
 	var cover=document.getElementById('cover');
 	cover.style.display='none';
 	
-	var signin=document.getElementById('signin');
+	var signin=document.getElementById('login');
 	signin.style.display='none';
 	
 	var register=document.getElementById("register");
@@ -16,7 +16,7 @@ function gotoLogin(){
 	var cover=document.getElementById('cover');
 	cover.style.display='none';
 	
-	var signin=document.getElementById('signin');
+	var signin=document.getElementById('login');
 	signin.style.display='table-cell';
 	
 	var register=document.getElementById("register");
@@ -27,7 +27,7 @@ function gotoCover(){
 	var cover=document.getElementById('cover');
 	cover.style.display='table-cell';
 	
-	var signin=document.getElementById('signin');
+	var signin=document.getElementById('login');
 	signin.style.display='none';
 	
 	var register=document.getElementById("register");
