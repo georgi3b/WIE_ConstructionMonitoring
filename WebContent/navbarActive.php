@@ -9,7 +9,7 @@
 			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="nav-link"
-						href="exampleProjects.html"> Projects</a></li>
+						href="exampleProjects.php"> Projects</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -19,13 +19,13 @@
 								class="dropdown-item" href="#">IOC</a> <a class="dropdown-item"
 								href="#">Unibx</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="exampleProjects.html">All
+							<a class="dropdown-item" href="exampleProjects.php">All
 								projects</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
 						href="exampleProfile.html">My Profile</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="exampleAboutUs.html">About Us</a></li>
+						href="exampleAboutUs.php">About Us</a></li>
 
 				</ul>
 				<div class="form-inline mt-2 mt-md-0">
