@@ -16,18 +16,5 @@ catch(PDOException $e)
    // echo "Connection failed: " . $e->getMessage()."</br>";
     }
 
-$sql="SELECT * FROM users";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$no_rec = $stmt->rowCount();
-$data = array();
-$i=0;
-while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-	array_push($data,  array('id' => $row['activity_id'],
-		'description' =>$row['description']));
-	
-}
-echo json_encode($data);
-
 
 ?>

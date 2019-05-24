@@ -1,5 +1,28 @@
 <?php
 session_start();
+
+require_once ('connectDB.php');
+$instance = ConnectDB::getInstance();
+$conn = $instance->getConnection();
+
+if (isset($_SESSION['user_id'])) {
+    $u_mail = $_SESSION['user_id'];
+} else {
+    $u_mail = 'budgeo@yaho.ro';
+}
+
+// $proj_query = "SELECT * FROM project WHERE u_mail =?";
+$stmt = $conn->prepare("SELECT * FROM project
+WHERE u_mail =:u_mail");
+// $u_mail='budgeo@yaho.ro'; $_SESSION['user_id']
+$stmt->bindParam(':u_mail', $u_mail);
+$stmt->execute();
+$list_proj = array();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $list_proj[] = $row;
+}
+// echo json_encode($list_proj);
+?>
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,36 +47,23 @@ session_start();
 <script>
 $(document).ready(function() {
 
-        $("#new_proj_container").hide();
-		
-		$("#showForm").click(function(){
-			$("#new_proj_container").toggle();
-		});
+	var json_proj = <?php echo json_encode($list_proj);?>;
 	
-		//show projects' information
-		$.ajax({
-			type:'post',
-			url:'projects.php',
-			dataType:'json',
-			success: function(data, statusTxt, xmlht){
-				if(statusTxt=="success"){
-					$.each(data, function(idx, obj) {
-						//append data to tbody with id "projects"
-						 $('<tr>').attr('id',obj.proj_id).
-						  append($('<td>').text(obj.proj_id)).
-						  append($('<td>').append($('<div contentEditable="true" class="edit">').text(obj.proj_name))).
-						  append($('<td>').text(obj.active)).
-						  append($('<td>').text(obj.proj_type)).
-						  append($('<td>').text(obj.company)).
-							appendTo("tbody#projects");
-						
-						
-				})}
-				if(statusTxt == "error")
-					alert("Error: " + xmlht.status + ": " + xmlht.statusText);
-				}
-		});
+	$.each(json_proj, function(idx, obj) {
 		
+		//append data to tbody with id "projects"
+		 $('<tr>').attr('id',obj.proj_id).
+		  append($('<td>').text(obj.proj_id)).
+		  append($('<td>').text(obj.proj_name)).
+		  append($('<td>').text(obj.active)).
+		  append($('<td>').text(obj.proj_type)).
+		  append($('<td>').text(obj.company)).
+			appendTo("tbody#projects");
+					
+				
+	});
+	
+	var user = '<?php echo $u_mail;?>';			
 
 });
 </script>
@@ -65,31 +75,26 @@ $(document).ready(function() {
 	<div id="project-table">
 		<h2>Projects</h2>
 		<div id="table">
-		<table class="table" id="data">
-			<thead>
-				<tr>
-					<th data-field='proj_id'>Project Id</th>
-					<th data-field='proj_name'>Project Name</th>
-					<th data-field='active'>Active</th>
-					<th data-field='proj_type'>Type</th>
-					<th data-field='company'>Company</th>
-					<th data-field='more' href="#">More information</th>
-				</tr>
-			</thead>
-			<tbody id="projects">
-			</tbody>
-		</table>
+			<table class="table" id="data">
+				<thead>
+					<tr>
+						<th data-field='proj_id'>Project Id</th>
+						<th data-field='proj_name'>Project Name</th>
+						<th data-field='active'>Active</th>
+						<th data-field='proj_type'>Type</th>
+						<th data-field='company'>Company</th>
+						<th data-field='more' href="#">More information</th>
+					</tr>
+				</thead>
+				<tbody id="projects">
+				</tbody>
+			</table>
 		</div>
-		</div>
-		
-		<button class="btn btn-outline-success" id="showForm" 
-			onclick="window.location='new_project_form.php'" class="Redirect">New
-			Project</button>
-		<!--	
-		<div id = "new_proj_container">
-				<//?php include 'new_project_form.php' ?>
-		</div>
-		-->
-	
+	</div>
+
+	<button class="btn btn-outline-success  Redirect" id="showForm"
+		onclick="window.location='new_project.php'">New Project</button>
+
+
 </body>
 </html>
