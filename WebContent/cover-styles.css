@@ -97,4 +97,6 @@ html, body{
 .form-register input{
 	margin-bottom:10px;
 }
-
+.red{
+	color: #B03A2E;
+}

@@ -27,14 +27,17 @@ catch(PDOException $e){}
     	// Verify user password and set $_SESSION
 		
     	if ( password_verify( $_POST['password'], $user->password ) ) {
-    		$_SESSION['user_id'] = $user->u_mail;
+    		$_SESSION['user_id'] = $user->email;
+			
 			if ( isset($_SESSION['coverError'])){
 				unset($_SESSION['coverError']);}
-			header("location:exampleHome.html");
+				
+			header("location:exampleAboutUs.php");
 			
     	}
 		else{
 			$_SESSION['coverError'] = "login";
+			$_SESSION['coverRequest'] = "login";
 			header("location:CoverPage.php");}
     }
 }

@@ -33,8 +33,10 @@
 						<input class="form-control mr-sm-2" type="search"
 							placeholder="Search" aria-label="Search">
 						<!-- button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button-->
+						<a class="btn btn-light red" href="user_logout.php">Logout</a>
 					</form>
 				</div>
 			</div>
 		</nav>
 	</header>
+	<link rel="stylesheet" href="cover-styles.css">

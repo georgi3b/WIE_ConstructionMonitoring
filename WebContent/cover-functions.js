@@ -33,3 +33,16 @@ function gotoCover(){
 	var register=document.getElementById('register');
 	register.style.display='none';
 }	
+
+function redirectRegister(){
+	try{
+	gotoRegister();
+	}catch(err){
+	window.location.href = "CoverPage.php#register";}
+}
+function redirectLogin(){
+	try{
+	gotoLogin();
+	}catch(err){
+	window.location.href = "CoverPage.php#login"}
+}

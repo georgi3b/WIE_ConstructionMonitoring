@@ -18,38 +18,15 @@ session_start();
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="cover-functions.js"></script>
-<link rel="stylesheet" href="cover-styles.css">
+
+
 <title>Cover Page</title>
 </head>
 <body>
 
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top">
-			<a class="navbar-brand" href="#" onclick="gotoCover()">BuildUp</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarCollapse" aria-controls="navbarCollapse"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#" onclick="gotoCover()">Home<span
-							class="sr-only">(current)</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
 
-				</ul>
-				<div class="form-inline mt-2 mt-md-0">
-					<form>
-						<button class="btn btn-outline-light" type="button" onclick="gotoRegister()" >Register</button>
-						<button class="btn btn-light" type="button" onclick="gotoLogin()">Login</button>
-					</form>
-				</div>
-			</div>
-		</nav>
-	</header>
 
-	
+	<?php include 'navbarCover.php';?>
 	
 	
 	<div id="home">
@@ -74,7 +51,7 @@ session_start();
 					placeholder="Email address" required autofocus>
 					
 				<label for="inputPassword" class="sr-only">Password</label> <input
-					type="password" name="password" id="inputPassword" class="form-control"
+					type="password" name="password" id="inputPasswordReg" class="form-control"
 					placeholder="Password" required>
 					
 				<?php if (isset($_SESSION['coverError'])&&$_SESSION['coverError']=="register"): ?>
@@ -101,7 +78,7 @@ session_start();
 					type="email" name="email" id="inputMail" class="form-control"
 					placeholder="Username" required autofocus> <label
 					for="inputPassword" class="sr-only">Password</label> <input
-					type="password" name="password" id="inputPassword" class="form-control"
+					type="password" name="password" id="inputPasswordlog" class="form-control"
 					placeholder="Password" required>
 				<?php if (isset($_SESSION['coverError'])&& $_SESSION['coverError']=="login"): ?>
     <div class="form-errors">
@@ -123,6 +100,7 @@ session_start();
 		
 	</div>
 	
+	<script type="text/javascript">if (window.location.hash == '#login') {gotoLogin();} else if (window.location.hash === '#register') {gotoRegister();}</script>
 <?php if (isset($_SESSION['coverError'])):?> 
 
 		<?php if ($_SESSION['coverError']=="login"):?>
@@ -131,9 +109,7 @@ session_start();
 		<script type="text/javascript">gotoRegister();</script>
 		<?php endif; ?>
 	<?php else: ?>
-	
-	<script type="text/javascript">gotoCover();</script>
-	<?php endif; ?>
+<?php endif; ?>
 	
 </body>
 </html>

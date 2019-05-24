@@ -25,8 +25,8 @@ catch(PDOException $e){}
     	
     		
     	if (!empty($user)){
-			
-    		$_SESSION['coverError'] = "register";
+			$_SESSION['coverError'] = "register";
+    		$_SESSION['coverRequest'] = "register";
 			header("location:CoverPage.php");
 			
     	}
