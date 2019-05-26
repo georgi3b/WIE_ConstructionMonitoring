@@ -35,48 +35,23 @@ $(document).ready(function() {
 			}));
 		});
 	});
-
 	
 	
-	//disable next button
-	$('#next').prop('disabled',true);
+	var my_orms = document.querySelectorAll('form');
 	
-	
-	/* BUTTON FUNCTIONALITIES */
-	$('#save_proj').click(function(){
-		alert("The project will be saved!");
-		
-	});
-	
-	if (window.location.hash === '#showNext') {
-		$('#next').prop('disabled',false);
-	}
-			
-	
-	function showNext(){
-		$('#next').prop('disabled',false);
-	}
-	
-	$('#next').click(function(){
-		alert("This will lead you to the next setup page.");
-		//$("#proj_setup").show();
-		//$("#new_project").hide();
-	});
-	
-	var cancelForms = document.querySelectorAll('form');
-	
-	for( var i = 0; i <cancelForms.length; i++){
-		cancelForms[i].addEventListener('reset', function(event) {
+	for( var i = 0; i <my_forms.length; i++){
+		my_forms[i].addEventListener('reset', function(event) {
 			if (!confirm('Are you sure you want to reset?')) {
 				event.preventDefault();
 			}
+        });
+        
+		my_forms[i].addEventListener('submit', function(event) {
+			if (!confirm('Please confirm you want to create the project.')) {
+				event.preventDefault();
+			}
 		});
-	}
-	
-	/*
-	document.querySelector('form').addEventListener('reset', function(event) {
-		if (!confirm('Are you sure you want to reset?')) {
-			event.preventDefault();
-	}*/
+    }
+    
 });
 

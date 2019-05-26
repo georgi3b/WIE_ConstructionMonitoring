@@ -58,9 +58,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				$insert_query->execute();
 				$proj_id = $conn->lastInsertId();
 				$done = true;
-				$_SESSION['proj_type']=$proj_type;
 				$_SESSION['proj_id']=$proj_id;
-				header("Location:further_setup.php");
+				header("Location:project_info.php");
 			} catch(PDOException $e){
 				$done = false;
 				echo "Insertion failed: ".$e->getMessage()."</br>";
@@ -97,12 +96,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	</head>
 	<body>
-		<?php include 'navigationBar.php' ?>
+		<?php include 'navbarActive.php'; ?>
 		<br><br><br>
 		<div id = "new_project">
 			<h2>Insert here the details of the project</h2>
 			<h3><?php if($done){echo($proj_id);}?></h3>
-			<div>
+			
 			<form  class="needs-validation" novalidate method="post" 
 				action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<div class="form-row">
@@ -123,6 +122,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								id ="proj_type_dropd" name="proj_type" class="form-control" required>
 							</select>
 						</div>
+					</div>
+					<div class="form-row">
 						<div class="col-md-9 w-100">
 						<label for="description">Description</label>
 						<textarea name = "description" placeholder="" value="" class="form-control"
@@ -170,21 +171,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				
 					<br/>
 					<div class="form-row">
-						<div class="col-12">
+						<div class="col-9">
 							<div class="btn-group" role="group">
 							
-								<input id = "save_proj" type ="submit" class="btn btn-success mr-1 ml-1"  name="save_proj" value="Save">
-									
-								<input id= "next" type="button" class="btn btn-success mr-1 ml-1 redirect" name="next"
-									onclick="window.location='further_setup.php'" value="Next">
-									
-								<input id = "reset_proj" type ="reset"  class="btn btn-danger mr-1 ml-5"  name="reset" value="Cancel">
+								<input type ="submit"  name="save_proj" class="btn btn-success mr-1 ml-1" value="Save" >
+								
+								<input type ="reset" name="reset_proj" class="btn btn-danger mr-1 ml-5"   value="Cancel">
 								
 							</div>
 						</div>
 					</div>
 			</form>
-			</div>
+			
 		</div>
 	</body>
 </html>

@@ -17,12 +17,8 @@ WHERE u_mail =:u_mail");
 // $u_mail='budgeo@yaho.ro'; $_SESSION['user_id']
 $stmt->bindParam(':u_mail', $u_mail);
 $stmt->execute();
-$list_proj = array();
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $list_proj[] = $row;
-}
-// echo json_encode($list_proj);
-?>
+$list_proj = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,12 +48,25 @@ $(document).ready(function() {
 	$.each(json_proj, function(idx, obj) {
 		
 		//append data to tbody with id "projects"
+		
 		 $('<tr>').attr('id',obj.proj_id).
-		  append($('<td>').text(obj.proj_id)).
+		 append($('<td>').text(obj.proj_id)).
 		  append($('<td>').text(obj.proj_name)).
 		  append($('<td>').text(obj.active)).
 		  append($('<td>').text(obj.proj_type)).
 		  append($('<td>').text(obj.company)).
+		  append($('<td>').
+		  append($('<form>'). attr({'method':'post','action':'project_info.php'})
+		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
+		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info").click(function(){
+			}))
+			 )).append($('<td>').
+			append($('<form>').attr({'method':'post','action':'monitoring.php'})
+			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
+			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor").click(function(){
+				alert('hello');
+				//window.location.href = "projectInfo.php#id";
+			})))).
 			appendTo("tbody#projects");
 					
 				
@@ -70,7 +79,7 @@ $(document).ready(function() {
 </head>
 <body>
 
-	<?php include 'navigationBar.php' ?>
+	<?php include 'navbarActive.php' ?>
 
 	<div id="project-table">
 		<h2>Projects</h2>
@@ -83,7 +92,8 @@ $(document).ready(function() {
 						<th data-field='active'>Active</th>
 						<th data-field='proj_type'>Type</th>
 						<th data-field='company'>Company</th>
-						<th data-field='more' href="#">More information</th>
+						<th data-field='more'>More information</th>
+						<th data-field='monitoring'>Monitoring</th>
 					</tr>
 				</thead>
 				<tbody id="projects">
