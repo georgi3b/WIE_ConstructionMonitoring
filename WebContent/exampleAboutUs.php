@@ -29,7 +29,8 @@ session_start();
 		include 'navbarActive.php';}
 		else{
 		
-		include 'navbarCover.php';}
+		include 'navbarCover.php';
+		}
 	?>
 	<main role="main">
 	<div

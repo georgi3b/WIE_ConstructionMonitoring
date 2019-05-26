@@ -1,13 +1,13 @@
 <header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top">
-			<a class="navbar-brand" href="exampleHome.html">BuildUp</a>
+			<a class="navbar-brand" href="exampleHome.php">BuildUp</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarCollapse" aria-controls="navbarCollapse"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
-				<ul class="navbar-nav mr-auto">
+				<ul class="navbar-nav mr-auto"> 
 					<li class="nav-item active"><a class="nav-link"
 						href="exampleProjects.php"> Projects</a></li>
 					<li class="nav-item dropdown"><a
@@ -23,7 +23,7 @@
 								projects</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
-						href="exampleProfile.html">My Profile</a></li>
+						href="#">My Profile</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="exampleAboutUs.php">About Us</a></li>
 

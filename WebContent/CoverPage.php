@@ -76,7 +76,7 @@ session_start();
 				<h1 class="h3 mb-3 font-weight-normal">Log In</h1>
 				<label for="inputEmail" class="sr-only">Email address</label> <input
 					type="email" name="email" id="inputMail" class="form-control"
-					placeholder="Username" required autofocus> <label
+					placeholder="Email" required autofocus> <label
 					for="inputPassword" class="sr-only">Password</label> <input
 					type="password" name="password" id="inputPasswordlog" class="form-control"
 					placeholder="Password" required>

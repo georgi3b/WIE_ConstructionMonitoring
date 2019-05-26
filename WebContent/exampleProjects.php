@@ -71,6 +71,8 @@ $(document).ready(function() {
 					
 				
 	});
+
+	$('input[name="id"]').hide();
 	
 	var user = '<?php echo $u_mail;?>';			
 

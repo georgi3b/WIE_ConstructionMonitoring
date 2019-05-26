@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 		$.ajax({
 				type:'post',
-				url:'worktypes.php',
+				url:'proj_types.php',
 				dataType:'json',
 				success: function(data, statusTxt, xmlht){
 						proj_types = data;
@@ -35,23 +35,6 @@ $(document).ready(function() {
 			}));
 		});
 	});
-	
-	
-	var my_orms = document.querySelectorAll('form');
-	
-	for( var i = 0; i <my_forms.length; i++){
-		my_forms[i].addEventListener('reset', function(event) {
-			if (!confirm('Are you sure you want to reset?')) {
-				event.preventDefault();
-			}
-        });
-        
-		my_forms[i].addEventListener('submit', function(event) {
-			if (!confirm('Please confirm you want to create the project.')) {
-				event.preventDefault();
-			}
-		});
-    }
     
 });
 

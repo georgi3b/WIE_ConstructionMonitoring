@@ -13,8 +13,19 @@
           event.preventDefault()
           event.stopPropagation()
         }
-        form.classList.add('was-validated')
-      }, false)
+        if (!confirm('Please confirm your action.')) {
+				event.preventDefault();
+        }
+        
+        form.classList.add('was-validated')}, false);
+
+      	form.addEventListener('reset', function(event) {
+			if (!confirm('Are you sure you want to reset?')) {
+				event.preventDefault();
+			}
+        });
+
     })
   }, false)
-}())
+}());
+
