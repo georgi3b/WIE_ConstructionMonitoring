@@ -115,5 +115,9 @@
 			
 		</div>
 	</body>
+	<script type="text/javascript">
+	if (window.location.hash == '#retry') {
+		alert("An error occured while creating the project. \nPerhaps the project name is already in use. \nPlease try again.");} 
+	</script>
 </html>
 		

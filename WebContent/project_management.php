@@ -60,13 +60,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     				$_SESSION['proj_id']=$proj_id;
     				header("Location:project_info.php");
 				} else{
-				    echo "Insertion failed</br>";
-				    header("Location:new_project.php");
+				    header("Location:new_project.php#retry");
 				}
 			} catch(PDOException $e){
 				$done = false;
 				echo "Insertion failed: ".$e->getMessage()."</br>";
-				header("Location:new_project.php");
+				header("Location:new_project.php#retry");
 			}
 		
 	$proj_name = $company = $proj_type = $country = $city = $post_code = $street = $street_no = $description = "";
