@@ -1,7 +1,7 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top">
-			<a class="navbar-brand" href="CoverPage.php">BuildUp</a>
+			<a class="navbar-brand" href="index.php">BuildUp</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarCollapse" aria-controls="navbarCollapse"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -9,7 +9,7 @@
 			</button>
 			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="CoverPage.php">Home<span
+					<li class="nav-item active"><a class="nav-link" href="index.php">Home<span
 							class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="exampleAboutUs.php">About Us</a></li>
 

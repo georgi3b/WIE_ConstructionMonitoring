@@ -27,7 +27,7 @@ if (! empty($_POST)) {
         // Verify user password and set $_SESSION
 
         if (password_verify($_POST['password'], $user->password)) {
-            $_SESSION['user_id'] = $user->u_mail;
+            $_SESSION['user_id'] = $user;
 
             if (isset($_SESSION['coverError'])) {
                 unset($_SESSION['coverError']);

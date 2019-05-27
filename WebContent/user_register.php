@@ -38,8 +38,7 @@ if (! empty($_POST)) {
             if (isset($_SESSION['coverError'])) {
                 unset($_SESSION['coverError']);
             }
-            $_SESSION['user_id'] = $_POST['email'];
-            header("location:exampleHome.php");
+            header("location:CoverPage.php#login");
         }
     }
 }

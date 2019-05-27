@@ -96,7 +96,7 @@ $(document).ready(function() {
 								projects</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
-						href="#">My Profile</a></li>
+						href="MyProfile.php">My Profile</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="exampleAboutUs.php">About Us</a></li>
 

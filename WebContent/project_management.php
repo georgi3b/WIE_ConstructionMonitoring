@@ -6,7 +6,7 @@ $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
 if(isset($_SESSION['user_id'])){
-	$u_mail = $_SESSION['user_id'];
+	$u_mail = $_SESSION['user_id']->u_mail;
 }else{
 	$u_mail = 'budgeo@yaho.ro';
 }
