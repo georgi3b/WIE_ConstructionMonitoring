@@ -39,7 +39,7 @@ session_start();
 			<div class="col-lg-6">
 				<div
 					class="inner-about-anna align-items-center justify-content-center">
-					<img class="rounded-circle" src="anna.jpg"
+					<img class="rounded-circle" src="images/anna.jpg"
 						alt="Image of Anna Debiasi" width="160" height="160">
 					<h2 style="padding-top: 20px; padding-bottom: 20px">Anna
 						Debiasi</h2>
@@ -55,7 +55,7 @@ session_start();
 			<div class="col-lg-6">
 				<div
 					class="inner-about-geo align-items-center justify-content-center">
-					<img class="rounded-circle" src="georgiana.jpg"
+					<img class="rounded-circle" src="images/georgiana.jpg"
 						alt="Image of Georgiana Bud" width="160" height="160">
 					<h2 style="padding-top: 20px; padding-bottom: 20px">Georgiana
 						Bud</h2>
