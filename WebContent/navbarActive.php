@@ -83,18 +83,7 @@ $(document).ready(function() {
 						</div>
 						</li>
 						
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Monitoring</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Swiss Re</a> <a
-								class="dropdown-item" href="#">IOC</a> <a class="dropdown-item"
-								href="#">Unibx</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="exampleProjects.php#active">All
-								projects</a>
-						</div></li>
+					
 					<li class="nav-item"><a class="nav-link"
 						href="MyProfile.php">My Profile</a></li>
 					<li class="nav-item"><a class="nav-link"

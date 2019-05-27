@@ -1,15 +1,15 @@
 <?php
 session_start();
-
+if(isset($_SESSION['user_id'])){
+	$u_mail = $_SESSION['user_id']->u_mail;
+}else{
+	header("location:index.php");
+}
 require_once('connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
-if(isset($_SESSION['user_id'])){
-	$u_mail = $_SESSION['user_id']->u_mail;
-}else{
-	$u_mail = 'budgeo@yaho.ro';
-}
+
 
 //function to process input data and clean it
 function clean_input($data) {
