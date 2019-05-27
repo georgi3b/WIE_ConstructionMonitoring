@@ -1,8 +1,11 @@
 <?php
 session_start();
 
-if ( isset($_SESSION['user_id'])){
-	$id=$_SESSION['user_id'];}
+if(isset($_SESSION['user_id'])){
+    $id = $_SESSION['user_id'];
+}else{
+    header("location:index.php");
+}
 
 require_once ('connectDB.php');
 $instance = ConnectDB::getInstance();

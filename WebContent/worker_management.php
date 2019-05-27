@@ -4,10 +4,10 @@ require_once ('connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
-if (isset($_SESSION['user_id'])) {
-    $u_mail = $_SESSION['user_id'];
-} else {
-    $u_mail = 'budgeo@yaho.ro';
+if(isset($_SESSION['user_id'])){
+    $u_mail = $_SESSION['user_id']->u_mail;
+}else{
+    header("location:index.php");
 }
 
 $proj_id = 80;
@@ -54,11 +54,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             header("Location:workers_setup.php#phoneErr");
         } else{
             try{
+            $done;
             $conn->beginTransaction();
             $insert_worker = $conn->prepare("INSERT INTO worker(w_name,u_mail,role,phone_no,mail,country,
             city,post_code,street,street_no) VALUES (:w_name,:u_mail,:role,:phone_no,:mail,:country,
             :city,:post_code,:street,:street_no)");
-            $insert_worker->execute(array(
+            $done = $insert_worker->execute(array(
                 ':w_name'   => $w_name,
                 ':u_mail'   => $u_mail,
                 ':role'     => $role,
@@ -70,18 +71,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 ':street'   => $street,
                 ':street_no'=> $street_no
             ));
+            
             $insert_wp = $conn->prepare("INSERT INTO worker_project(w_name,proj_id,contract)
             VALUES(:w_name,:proj_id,:contract)");
-            $insert_wp->execute(array(':w_name'=> $w_name,':proj_id'=>$proj_id,
+            $done = $insert_wp->execute(array(':w_name'=> $w_name,':proj_id'=>$proj_id,
                     ':contract'=>$contract));
-   
+            if($done){
             $conn->commit();
             header("Location:workers_setup.php");
+            } else{
+                header("Location:workers_setup.php#retry");
+            }
            // header("Location:project_info.php");
             } catch (PDOException $e) {
                 $conn->rollBack();
                 echo $e->getMessage();
-                
+                header("Location:workers_setup.php#retry");
             }
             
         }

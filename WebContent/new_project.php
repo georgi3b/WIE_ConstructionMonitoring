@@ -1,4 +1,4 @@
-
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,13 +19,24 @@
 			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="form-validation.js"></script>
 		<script type="text/javascript" src="new_proj_functions.js">
-			
 		</script>
+		<script type="text/javascript">
+        	if (window.location.hash == '#retry') {
+        		alert("An error occured while creating the project. \nPerhaps the project name is already in use. \nPlease try again.");
+        		} 
+	</script>
 		<title>New Project</title>
 
 	</head>
 	<body>
-		<?php include 'navbarActive.php'; ?>
+		<?php
+    		if (isset($_SESSION['user_id'])){
+    		  include 'navbarActive.php';
+    		}
+    		else{
+    		  include 'navbarCover.php';
+    		}
+	   ?>
 		<br><br><br>
 		<div id = "new_project">
 			<h2>Insert here the details of the project</h2>
@@ -115,9 +126,5 @@
 			
 		</div>
 	</body>
-	<script type="text/javascript">
-	if (window.location.hash == '#retry') {
-		alert("An error occured while creating the project. \nPerhaps the project name is already in use. \nPlease try again.");} 
-	</script>
 </html>
 		

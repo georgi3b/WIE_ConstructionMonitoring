@@ -27,7 +27,7 @@ if (! empty($_POST)) {
         if (! empty($user)) {
             $_SESSION['coverError'] = "register";
             $_SESSION['coverRequest'] = "register";
-            header("location:CoverPage.php");
+            header("location:index.php");
         } else {
             $stmt2 = $conn->prepare("INSERT INTO appuser (u_mail, u_name, password) VALUES (:email, :username, :password)");
             $stmt2->execute(array(
@@ -38,7 +38,7 @@ if (! empty($_POST)) {
             if (isset($_SESSION['coverError'])) {
                 unset($_SESSION['coverError']);
             }
-            header("location:CoverPage.php#login");
+            header("location:index.php#login");
         }
     }
 }

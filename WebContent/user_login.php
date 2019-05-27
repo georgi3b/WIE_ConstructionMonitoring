@@ -37,7 +37,7 @@ if (! empty($_POST)) {
         } else {
             $_SESSION['coverError'] = "login";
             $_SESSION['coverRequest'] = "login";
-            header("location:CoverPage.php");
+            header("location:index.php");
         }
     }
 }

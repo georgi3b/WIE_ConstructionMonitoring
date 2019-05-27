@@ -17,13 +17,6 @@ if (isset($_SESSION['proj_id'])) {
     $proj_id = $_SESSION['proj_id'];
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['mon'])) {
-        $proj_id = $_POST['id'];
-        $_SESSION['proj_id'] = $proj_id;
-    }
-}
-
 $tasks;
 
 $sql3 = "SELECT * FROM task WHERE proj_id= :proj_id";
@@ -59,12 +52,11 @@ $(document).ready(function() {
     $.each(tasks, function(idx, obj) {
     	$('<tr>').attr('id',obj.task_id).
 		  append($('<td>').attr('id','proj_id').text(obj.proj_id)).
-		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
 		  append($('<td>').attr('id','unit_name').text(obj.unit_name)).
 		  append($('<td>').attr('id','build_level').text(obj.build_level)).
+		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
 		  append($('<td>').attr('id','quantity').text(obj.quantity)).
 		  append($('<td>').attr('id','orientation').text(obj.orientation)).
-		  append($('<td>').attr({'class':'btn btn-primary','type':'button','onclick':'alert("Here the activities can be monitored.");'}).text("Monitor task")).
 			appendTo("#tasks_data tbody");
 		});
 });
@@ -98,9 +90,8 @@ $(document).ready(function() {
 					<th data-field='work_type_id'>Work type id</th>
 					<th data-field='unit name'>Unit name</th>
 					<th data-field='level'>Level</th>
-					<th data-field='quantity'>Quantity</th>
 					<th data-field='orientation'>Orientation</th>
-					
+					<th data-field='quantity'>Quantity</th>
 					<th>Action</th>
 
 				</tr>

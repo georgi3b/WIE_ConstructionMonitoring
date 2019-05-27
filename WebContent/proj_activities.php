@@ -10,22 +10,30 @@ if(isset($_SESSION['user_id'])){
     header("location:index.php");
 }
 
-$proj_id = 80;
+$proj_id;
 // project id is obtained from session or from page before
 // after inserting project the corresponding already defined data is retrieved
 if (isset($_SESSION['proj_id'])) {
     $proj_id = $_SESSION['proj_id'];
 }
 
-$sql2 = "SELECT WT.work_type_id,WT.description, WT.proj_type FROM work_type as WT, project as P WHERE
-WT.proj_type = P.proj_type AND P.proj_id=:proj_id";
-$stmt2 = $conn->prepare($sql2);
-$stmt2->bindParam(':proj_id', $proj_id);
+$sql = "
+SELECT A.activity_id,A.code, A.description, A.work_type_id, WT.description as w_description
+FROM activity A, work_type WT, project P
+WHERE A.work_type_id = WT.work_type_id 
+    AND WT.proj_type = P.proj_type 
+    AND P.proj_id=:proj_id";
 
-$stmt2->execute();
-$work_types = $stmt2->fetchAll();
+
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':proj_id', $proj_id);
+
+$stmt->execute();
+$activities= $stmt->fetchAll();
 
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,13 +56,15 @@ $work_types = $stmt2->fetchAll();
 <title>New Project</title>
 <script>
 $(document).ready(function() {
-    var work_types =  <?php echo json_encode($work_types);?>;
-    $.each(work_types, function(idx, obj) {
+    var activities =  <?php echo json_encode($activities);?>;
+    $.each(activities, function(idx, obj) {
     	$('<tr>').attr('id',obj.work_type_id).
-		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
+		  append($('<td>').attr('id','id').text(obj.activity_id)).
+		  append($('<td>').attr('id','code').text(obj.code)).
 		  append($('<td>').attr('id','description').text(obj.description)).
-		  append($('<td>').attr('id','proj_type').text(obj.proj_type)).
-			appendTo("#work_types tbody");
+		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
+		  append($('<td>').attr('id','work_description').text(obj.w_description)).
+			appendTo("#activities tbody");
 		});
 });
 </script>
@@ -68,14 +78,15 @@ $(document).ready(function() {
     		<form>
     			<div class="form-row">
     				<div class="col-md-9">
-    					<table class="table" id="work_types">
+    					<table class="table" id="activities">
     						<thead>
     							<tr>
     
     								<th data-field='id'>Id</th>
+    								<th data-field='code'>Code</th>
     								<th data-field='description'>Description</th>
-    								<th data-field='proj_type'>Project Type</th>
-    
+    								<th data-field='work_type'>Work Type id</th>
+    								<th data-field='work_description'>Work Description</th>
     
     							</tr>
     						</thead>

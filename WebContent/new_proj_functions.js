@@ -22,6 +22,7 @@ $(document).ready(function() {
 				}
 			})
 	).then(function(){
+       
 		$.each(countries, function(idx, obj) {
 			$('#countries').append($('<option>', { 
 				value: obj.iso_code,

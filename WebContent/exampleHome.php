@@ -1,14 +1,10 @@
 <?php 
 session_start();
 
-require_once ('connectDB.php');
-$instance = ConnectDB::getInstance();
-$conn = $instance->getConnection();
-
-if (isset($_SESSION['user_id'])) {
-    $u_mail = $_SESSION['user_id'];
-} else {
-    $u_mail = 'budgeo@yaho.ro';
+if(isset($_SESSION['user_id'])){
+    $u_mail = $_SESSION['user_id']->u_mail;
+}else{
+    header("location:index.php");
 }
 
 
@@ -16,7 +12,6 @@ if (isset($_SESSION['user_id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,7 +30,6 @@ if (isset($_SESSION['user_id'])) {
 $(document).ready(function() {
 	
 	//var json_proj = ?php echo json_encode($list_proj);?>;
-	
 	var allProj;
 	var last;
 	var sec_last;
@@ -54,7 +48,7 @@ $(document).ready(function() {
 		if(allProj.length>=1){
 		
     		last = allProj[allProj.length-1];
-    		alert(last);
+    		//alert(last);
     		$('<h1>').attr({'value':'Project ' + last.proj_id})
     					.text('Project ' + last.proj_id + ": " + last.proj_name).appendTo('#last_proj');
     		$('<p>').text(last.description).appendTo('#last_proj');
@@ -96,9 +90,10 @@ $(document).ready(function() {
 	<?php 
 
 		if (isset($_SESSION['user_id'])){
-		  include 'navbarActive.php';
+		  include 'navbarActive.php';}
+		else{
+		  include 'navbarCover.php';
 		}
-		
 	?>
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -117,6 +112,7 @@ $(document).ready(function() {
           </div>
           <div class="carousel-item">
             <div class="container d-flex align-items-center justify-content-center min-vh-100">
+            
               <div class="carousel-caption text-left" id="sec_last_proj">
                 
               </div>

@@ -38,11 +38,11 @@ function redirectRegister(){
 	try{
 	gotoRegister();
 	}catch(err){
-	window.location.href = "CoverPage.php#register";}
+	window.location.href = "index.php#register";}
 }
 function redirectLogin(){
 	try{
 	gotoLogin();
 	}catch(err){
-	window.location.href = "CoverPage.php#login"}
+	window.location.href = "index.php#login"}
 }

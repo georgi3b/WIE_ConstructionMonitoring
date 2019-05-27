@@ -1,5 +1,6 @@
 <?php
 session_start();
+$u_mail;
 if(isset($_SESSION['user_id'])){
 	$u_mail = $_SESSION['user_id']->u_mail;
 }else{

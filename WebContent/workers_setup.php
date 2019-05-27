@@ -4,10 +4,10 @@ require_once ('connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
-if (isset($_SESSION['user_id'])) {
-    $u_mail = $_SESSION['user_id'];
-} else {
-    $u_mail = 'budgeo@yaho.ro';
+if(isset($_SESSION['user_id'])){
+    $u_mail = $_SESSION['user_id']->u_mail;
+}else{
+    header("location:index.php");
 }
 
 $proj_id = 80;
@@ -68,6 +68,13 @@ $(document).ready(function() {
 	if (hash == "#phoneErr"){
 		alert("Phone must be a number");
 	}
+
+
+	if (window.location.hash == '#retry') {
+		alert("An error occured while creating the project"+ 
+				"\nPerhaps the worker name is already in database."+
+				"\nPlease try again.");
+	} 
 	
 	$('#new_worker_div').hide();
 	$('#new_worker').click(function() {
@@ -118,11 +125,17 @@ $(document).ready(function() {
 		});
 	});
 });
-		</script>
-
+</script>
 </head>
 <body>
-		<?php include 'navbarActive.php';?>
+		<?php 
+
+    		if (isset($_SESSION['user_id'])){
+    		  include 'navbarActive.php';}
+    		else{
+    		  include 'navbarCover.php';
+    		}
+	   ?>
 		<br>
 	<br>
 	<br>
@@ -134,7 +147,7 @@ $(document).ready(function() {
 					<div class="col-9">
 						<input type="submit" class="btn btn-success-primary" name="back"
 							value="Back to project">
-						</button>
+						
 					</div>
 				</div>
 			</form>

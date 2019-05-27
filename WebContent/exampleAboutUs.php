@@ -26,10 +26,9 @@ session_start();
 	<?php 
 
 		if (isset($_SESSION['user_id'])){
-		include 'navbarActive.php';}
+		  include 'navbarActive.php';}
 		else{
-		
-		include 'navbarCover.php';
+		  include 'navbarCover.php';
 		}
 	?>
 	<main role="main">

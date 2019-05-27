@@ -1,24 +1,5 @@
 <?php
 session_start();
-/*
-require_once ('connectDB.php');
-$instance = ConnectDB::getInstance();
-$conn = $instance->getConnection();
-
-if (isset($_SESSION['user_id'])) {
-    $u_mail = $_SESSION['user_id'];
-} else {
-    $u_mail = 'budgeo@yaho.ro';
-}
-
-// $proj_query = "SELECT * FROM project WHERE u_mail =?";
-$stmt = $conn->prepare("SELECT * FROM project
-WHERE u_mail =:u_mail");
-// $u_mail='budgeo@yaho.ro'; $_SESSION['user_id']
-$stmt->bindParam(':u_mail', $u_mail);
-$stmt->execute();
-$list_proj = $stmt->fetchAll();
-*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,28 +39,60 @@ $(document).ready(function() {
 				}
 		})
 	).then(function(){
-	
-    	$.each(json_proj, function(idx, obj) {
-    		
-    		//append data to tbody with id "projects"
-    		
-    		 $('<tr>').attr('id',obj.proj_id).
-    		 append($('<td>').text(obj.proj_id)).
-    		  append($('<td>').text(obj.proj_name)).
-    		  append($('<td>').text(obj.active)).
-    		  append($('<td>').text(obj.proj_type)).
-    		  append($('<td>').text(obj.company)).
-    		  append($('<td>').
-    		  append($('<form>'). attr({'method':'post','action':'project_info.php'})
-    		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
-    		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info"))
-    			 )).append($('<td>').
-    			append($('<form>').attr({'method':'post','action':'monitoring.php'})
-    			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
-    			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor")))).
-    			appendTo("tbody#projects");
+
+		if(window.location.hash == '#active'){
+			$.each(json_proj, function(idx, obj) {
+			//give only the results with active = true
+			 if(obj.active==='true'||obj.active){
+	    		 $('<tr>').attr('id',obj.proj_id).
+	    		 append($('<td>').text(obj.proj_id)).
+	    		  append($('<td>').text(obj.proj_name)).
+	    		  append($('<td>').text(obj.active)).
+	    		  append($('<td>').text(obj.proj_type)).
+	    		  append($('<td>').text(obj.company)).
+	    		  append($('<td>').
+	    		  append($('<form>'). attr({'method':'post','action':'project_info.php'})
+	    		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
+	    		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info"))
+	    			 )).appendTo("tbody#projects");
+	    		//append data to tbody with id "projects"
+	        	$('<td>').
+	        			append($('<form>').attr({'method':'post','action':'monitoring.php'})
+	        			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
+	        			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor"))).
+	        			appendTo("tr#"+obj.proj_id);
+	    	
+				}				
+			});
+		}
+		else{
+		
+        	$.each(json_proj, function(idx, obj) {
+    
+        		 $('<tr>').attr('id',obj.proj_id).
+        		 append($('<td>').text(obj.proj_id)).
+        		  append($('<td>').text(obj.proj_name)).
+        		  append($('<td>').text(obj.active)).
+        		  append($('<td>').text(obj.proj_type)).
+        		  append($('<td>').text(obj.company)).
+        		  append($('<td>').
+        		  append($('<form>'). attr({'method':'post','action':'project_info.php'})
+        		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
+        		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info"))
+        			 )).appendTo("tbody#projects");
+        		//append data to tbody with id "projects"
+        		if(obj.active==='true'||obj.active){
+            		$('<td>').
+            			append($('<form>').attr({'method':'post','action':'monitoring.php'})
+            			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
+            			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor"))).
+            			appendTo("tr#"+obj.proj_id);
+        		} else {
+        			$('<td>').text("Archived").appendTo("tr#"+obj.proj_id);
+            	}
 							
-		});
+			});
+		}
     	$('input[name="id"]').hide();
 	});
 
@@ -92,7 +105,15 @@ $(document).ready(function() {
 </head>
 <body>
 
-	<?php include 'navbarActive.php' ?>
+
+	<?php 
+
+		if (isset($_SESSION['user_id'])){
+		  include 'navbarActive.php';}
+		else{
+		  include 'navbarCover.php';
+		}
+	?>
 
 	<div id="project-table">
 		<h2>Projects</h2>

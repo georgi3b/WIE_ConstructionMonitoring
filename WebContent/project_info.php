@@ -5,16 +5,16 @@ require_once ('connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
-if (isset($_SESSION['user_id'])) {
-    $u_mail = $_SESSION['user_id'];
-} else {
-    $u_mail = 'budgeo@yaho.ro';
+if(isset($_SESSION['user_id'])){
+    $u_mail = $_SESSION['user_id']->u_mail;
+}else{
+    header("location:index.php");
 }
 
 // I need to get the id of the project that was selected/inserted, in order to store it
 // into a session variable and to access it from next file
 // $proj_id='1';
-$proj;
+$proj_id;
 $err = "";
 
 
@@ -33,8 +33,8 @@ if (isset($_SESSION['proj_id'])) {
 }
 
 // the user is in this page because he chosed the project from the list of projects
-//or from the link on the Home page --> TODO
-//or from the link in the navbar --> TODO
+//or from the link on the Home page
+//or from the link in the navbar
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['info'])) {
         $proj_id = $_POST['id'];
@@ -50,6 +50,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
+//Activation and archiviation of project
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['archive'])){
+        $update_query = $conn->prepare("UPDATE project SET active='false' WHERE proj_id=:proj_id");
+        $update_query->bindParam(':proj_id', $proj_id);
+        try{
+            $update_query->execute();
+        }catch(PDOException $e){
+            $err = $e->getMessage();
+            echo ("Error: " . $e->getMessage());
+        }
+        unset($_POST['archive']);
+    }
+    if (isset($_POST['activate'])){
+        $update_query = $conn->prepare("UPDATE project SET active='true' WHERE proj_id=:proj_id");
+        $update_query->bindParam(':proj_id', $proj_id);
+        try{
+            $update_query->execute();
+        }catch(PDOException $e){
+            $err = $e->getMessage();
+            echo ("Error: " . $e->getMessage());
+        }
+        unset($_POST['activate']);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -75,12 +103,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 		
-		<?php include 'navbarActive.php';?>
-	
+	<?php include 'navbarActive.php';?>
 
-		<main role="main">
-	<div
-		class="container d-flex align-items-center justify-content-center min-vh-100 profile">
+	<br><br><br>
+	<div class="container d-flex align-items-center justify-content-center min-vh-100 profile">
 
 		<div class="proj-info">
 			
@@ -93,27 +119,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div class="row">
 				<div class="col-lg-1">
 					<p>Name:
-					
-					
 					<p>
 				
 				</div>
 				<div class="col-lg-2">
 					<p><?php echo($proj['proj_name']); ?></p>
 				</div>
-
-
 				<div class="col-lg-1">
 					<p>Company:
-					
-					
 					<p>
 				
 				</div>
 				<div class="col-lg-2">
 					<p><?php echo($proj['company']); ?></p>
 				</div>
-
 				<div class="col-lg-1">
 					<p>Type:
 					<p>
@@ -122,9 +141,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div class="col-lg-2">
 					<p><?php echo($proj['proj_type']); ?></p>
 				</div>
+				
+				<div class="col-lg-1 ">
+					<p>Status:<p>
+				
+				</div>
+				<div class="col-lg-2">
+    				<?php if($proj['active']=="true"):?>
+    					<p>Active</p>
+    				<?php else:?>
+    					<p>Archived</p>
+    				<?php endif?>
+					
+				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-1">
+			<div class="row pt-4 pt-lg-0">
+				<div class="col-lg-1 ">
 					<p>Description:
 					<p>
 				
@@ -133,15 +165,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<?php echo($proj['description']); ?>
 				</div>
 			</div>
-			<br>
-			<div>
-				<button type="button" class="btn btn-primary" 
-				onclick="window.location.href = 'monitoring.php'">Monitor</button>
+			
+			<div class="row pt-4 pt-lg-0">
+    			
+    			<div class="col-md-6">
+    				<button type="button" class="btn btn-primary" 
+        					onclick="window.location.href = 'monitoring.php'">Monitor</button>
+        		</div>
+        		<div class="col-md-6 pt-4 pt-md-0">		
+        			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">	
+        			<?php if($proj['active']=="true"):?>
+    				
+        			 	<input type="submit" name="archive" class="btn btn-primary" 
+        			 		value =	"Archive">
+        			 		
+        			 		<?php else:?>
+        			 	
+        			 	<input type="submit" name="activate" class="btn btn-primary" 
+        			 		value =	"Reactivate">
+        			 	
+        			 	<?php endif?>
+					</form>		
+				</div>
 			</div>
 			<h5 style="padding-top: 20px; padding-bottom: 20px">Location
 				information</h5>
 			<hr></hr>
-			<div class="row">
+			<div class="rowpt-4 pt-lg-0">
 				<div class="col-lg-1">
 					<p>Address:
 					
@@ -157,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 										<?php echo($proj['country']); ?></span>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row pt-4 pt-lg-0">
 
 				<div class="col-lg-3">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
@@ -180,14 +230,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="activities">
-						<button type="submit" name="activities" class="btn btn-primary">Activities</button>
+						<button type="submit" name="activities" class="btn btn-primary" 
+						onclick="window.location.href = 'proj_activities.php'">Activities</button>
 					</div>
 				</div>
 				<div class="col-lg-3">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="tasks">
-						<button type="submit" name="tasks" class="btn btn-primary">Work
+						<button type="submit" name="tasks" class="btn btn-primary"
+						onclick="window.location.href = 'proj_tasks.php'">Work
 							units/Tasks</button>
 					</div>
 				</div>
@@ -195,8 +247,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<?php endif?>
 			    <?php endif?>
 			</div>
-	
-	</main>
+	</div>
 
 </body>
 </html>
