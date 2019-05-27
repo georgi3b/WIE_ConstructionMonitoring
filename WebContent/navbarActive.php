@@ -19,7 +19,7 @@
 								class="dropdown-item" href="#">IOC</a> <a class="dropdown-item"
 								href="#">Unibx</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="exampleProjects.php">All
+							<a class="dropdown-item" href="exampleProjects.php#active">All
 								projects</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"

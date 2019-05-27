@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+/*
 require_once ('connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
@@ -18,7 +18,7 @@ WHERE u_mail =:u_mail");
 $stmt->bindParam(':u_mail', $u_mail);
 $stmt->execute();
 $list_proj = $stmt->fetchAll();
-
+*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,39 +42,50 @@ $list_proj = $stmt->fetchAll();
 <title>Projects</title>
 <script>
 $(document).ready(function() {
-
-	var json_proj = <?php echo json_encode($list_proj);?>;
 	
-	$.each(json_proj, function(idx, obj) {
-		
-		//append data to tbody with id "projects"
-		
-		 $('<tr>').attr('id',obj.proj_id).
-		 append($('<td>').text(obj.proj_id)).
-		  append($('<td>').text(obj.proj_name)).
-		  append($('<td>').text(obj.active)).
-		  append($('<td>').text(obj.proj_type)).
-		  append($('<td>').text(obj.company)).
-		  append($('<td>').
-		  append($('<form>'). attr({'method':'post','action':'project_info.php'})
-		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
-		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info").click(function(){
-			}))
-			 )).append($('<td>').
-			append($('<form>').attr({'method':'post','action':'monitoring.php'})
-			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
-			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor").click(function(){
-				alert('hello');
-				//window.location.href = "projectInfo.php#id";
-			})))).
-			appendTo("tbody#projects");
-					
-				
+	//var json_proj = ?php echo json_encode($list_proj);?>;
+	
+	var json_proj;
+	
+	$.when(
+			//get all the projects for the given user
+			$.ajax({
+				type:'post',
+				url:'user_projects.php',
+				dataType:'json',
+				success: function(data, statusTxt, xmlht){
+					json_proj = data;
+				}
+		})
+	).then(function(){
+	
+    	$.each(json_proj, function(idx, obj) {
+    		
+    		//append data to tbody with id "projects"
+    		
+    		 $('<tr>').attr('id',obj.proj_id).
+    		 append($('<td>').text(obj.proj_id)).
+    		  append($('<td>').text(obj.proj_name)).
+    		  append($('<td>').text(obj.active)).
+    		  append($('<td>').text(obj.proj_type)).
+    		  append($('<td>').text(obj.company)).
+    		  append($('<td>').
+    		  append($('<form>'). attr({'method':'post','action':'project_info.php'})
+    		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
+    		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info"))
+    			 )).append($('<td>').
+    			append($('<form>').attr({'method':'post','action':'monitoring.php'})
+    			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
+    			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor")))).
+    			appendTo("tbody#projects");
+							
+		});
+    	$('input[name="id"]').hide();
 	});
 
-	$('input[name="id"]').hide();
+	//$('input[name="id"]').hide();
 	
-	var user = '<?php echo $u_mail;?>';			
+	//var user = '?php echo $u_mail;?>';			
 
 });
 </script>

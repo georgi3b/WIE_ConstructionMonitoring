@@ -18,7 +18,7 @@ $proj;
 $err = "";
 
 
-// the user is in this page because he just created a project
+// the user is in this page because he/she has just created a project
 if (isset($_SESSION['proj_id'])) {
     $proj_id = $_SESSION['proj_id'];
     $stmt = $conn->prepare("SELECT * FROM project WHERE proj_id = :proj_id");
@@ -33,6 +33,8 @@ if (isset($_SESSION['proj_id'])) {
 }
 
 // the user is in this page because he chosed the project from the list of projects
+//or from the link on the Home page --> TODO
+//or from the link in the navbar --> TODO
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['info'])) {
         $proj_id = $_POST['id'];

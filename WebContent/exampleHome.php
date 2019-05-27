@@ -1,5 +1,17 @@
 <?php 
 session_start();
+
+require_once ('connectDB.php');
+$instance = ConnectDB::getInstance();
+$conn = $instance->getConnection();
+
+if (isset($_SESSION['user_id'])) {
+    $u_mail = $_SESSION['user_id'];
+} else {
+    $u_mail = 'budgeo@yaho.ro';
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,6 +31,64 @@ session_start();
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="cover-functions.js"></script>
+<script>
+$(document).ready(function() {
+	
+	//var json_proj = ?php echo json_encode($list_proj);?>;
+	
+	var allProj;
+	var last;
+	var sec_last;
+	$.when(
+			//get all the projects for the given user
+			$.ajax({
+				type:'post',
+				url:'user_projects.php',
+				dataType:'json',
+				success: function(data, statusTxt, xmlht){
+					allProj = data;
+				}
+		})
+	).then(function(){
+		//if the user has already created at least two projects
+		if(allProj.length>=1){
+		
+    		last = allProj[allProj.length-1];
+    		//alert(last);
+    		$('<h1>').attr({'value':'Project ' + last.proj_id})
+    					.text('Project ' + last.proj_id + ": " + last.proj_name).appendTo('#last_proj');
+    		$('<p>').text(last.description).appendTo('#last_proj');
+    		$('<form>').attr({'method':'post','action':'project_info.php'})
+    		.append($('<input>').attr({'name':'id','value':last.proj_id,'type':'hidden'}))
+    		.append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-primary'}).val("more info"))
+    		  .appendTo('#last_proj');
+    
+    		if(allProj.length>=2){
+        		sec_last = allProj[allProj.length-2];
+        		//alert(last);
+        
+        		$('<h1>').attr({'value':'Project ' + sec_last.proj_id})
+        					.text('Project ' + sec_last.proj_id + ": " + sec_last.proj_name).appendTo('#sec_last_proj');
+        
+        		$('<p>').text(sec_last.description).appendTo('#sec_last_proj');
+        
+        		$('<form>').attr({'method':'post','action':'project_info.php'})
+        		.append($('<input>').attr({'name':'id','value':sec_last.proj_id,'type':'hidden'}))
+        		.append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-primary'}).val("more info"))
+        		  .appendTo('#sec_last_proj');
+    		} else {
+    			$('<h1>').text('Please create a project').appendTo('#sec_last_proj');
+        	}
+    	} else {
+    		$('<h1>').text('Please create a project').appendTo('#last_proj');
+    		$('<h1>').text('Please create a project').appendTo('#sec_last_proj');
+        }
+	});
+
+	//var user = '?php echo $u_mail;?>';			
+
+});
+</script>
 <link rel="stylesheet" href="style.css">
 <title>Home</title>
 </head>
@@ -40,29 +110,25 @@ session_start();
           <div class="carousel-item">
             <div class="container d-flex align-items-center justify-content-center min-vh-100">
             
-              <div class="carousel-caption text-left">
-                <h1>Project 1</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">More about the project</a></p>
+              <div class="carousel-caption text-left" id = "last_proj">
+               
               </div>
             </div>
           </div>
           <div class="carousel-item">
             <div class="container d-flex align-items-center justify-content-center min-vh-100">
-              <div class="carousel-caption text-left">
-                <h1>Project 2</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">More about the project</a></p>
+              <div class="carousel-caption text-left" id="sec_last_proj">
+                
               </div>
             </div>
           </div>
           <div class="carousel-item active">
             <div class="container d-flex align-items-center justify-content-center min-vh-100">
             
-              <div class="carousel-caption ">
+              <div class="carousel-caption" id = "new_proj">
                 <h1>Create a new project</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">New Project</a></p>
+                <button class="btn btn-primary Redirect"
+						onclick="window.location='new_project.php'">New Project</button>
               </div>
             </div>
           </div>
