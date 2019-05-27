@@ -54,7 +54,7 @@ $(document).ready(function() {
 		if(allProj.length>=1){
 		
     		last = allProj[allProj.length-1];
-    		//alert(last);
+    		alert(last);
     		$('<h1>').attr({'value':'Project ' + last.proj_id})
     					.text('Project ' + last.proj_id + ": " + last.proj_name).appendTo('#last_proj');
     		$('<p>').text(last.description).appendTo('#last_proj');

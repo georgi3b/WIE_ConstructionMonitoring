@@ -17,7 +17,7 @@ if (isset($_SESSION['proj_id'])) {
     $proj_id = $_SESSION['proj_id'];
 }
 
-$sql2 = "SELECT * FROM work_type as WT, project as P WHERE
+$sql2 = "SELECT WT.work_type_id,WT.description, WT.proj_type FROM work_type as WT, project as P WHERE
 WT.proj_type = P.proj_type AND P.proj_id=:proj_id";
 $stmt2 = $conn->prepare($sql2);
 $stmt2->bindParam(':proj_id', $proj_id);

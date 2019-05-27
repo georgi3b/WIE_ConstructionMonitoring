@@ -16,8 +16,8 @@ if(isset($_SESSION['user_id'])){
 $proj_id='1';
 $proj;
 if($_SERVER["REQUEST_METHOD"] === "POST"){
-	if(isset($_POST['info'])){
-		$id = $_POST['id'];
+	if(isset($_POST['mon'])){
+		$proj_id = $_POST['id'];
 		$stmt = $conn->prepare("SELECT * FROM project WHERE proj_id = :proj_id");
 		$stmt->bindParam(':proj_id', $proj_id);
 		$stmt->execute();
@@ -54,6 +54,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 	<br><br>
 	<div>
 	<h2>MONITORING</h2>
+	<h3><?php echo($proj_id);?></h3>
 	</div>
 	
 	</body>

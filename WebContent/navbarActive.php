@@ -1,3 +1,56 @@
+<script>
+$(document).ready(function() {
+	
+	var allProj;
+	var last;
+	var sec_last;
+	$.when(
+			//get all the projects for the given user
+			$.ajax({
+				type:'post',
+				url:'user_projects.php',
+				dataType:'json',
+				success: function(data, statusTxt, xmlht){
+					allProj = data;
+				}
+		})
+	).then(function(){
+		if(allProj.length>=1){
+			//add the last projects to a link in the navigation bar
+
+			last = allProj[allProj.length-1];
+
+			$('<div>').attr({'class':'dropdown-item'})
+			.append($('<form>').attr({'method':'post','action':'monitoring.php'})
+    		.append($('<input>').attr({'name':'id','value':last.proj_id,'type':'hidden'}))
+    		.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn'}).val(last.proj_name)))
+    		  .appendTo('#list_proj');
+
+			sec_last = allProj[allProj.length-2];
+
+			$('<div>').attr({'class':'dropdown-item'})
+			.append($('<form>').attr({'method':'post','action':'monitoring.php'})
+    		.append($('<input>').attr({'name':'id','value':sec_last.proj_id,'type':'hidden'}))
+    		.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn'}).val(sec_last.proj_name)))
+    		  .appendTo('#list_proj');
+
+			
+			
+		}else{
+			
+				$('<button>').attr({'class':'dropdown-item','onclick':'window.location="new_project.php"'}).text("New")
+				.appendTo('#list_proj');
+		}
+
+		 
+		
+
+});
+	$('<div>').attr({'class':'dropdown-divider'}).appendTo('#list_proj');
+	 $('<div>').attr({'class':'dropdown-item'}).append($('<a>').attr({'href':'exampleProjects.php#active'}).
+			 text('All projects')).appendTo('#list_proj');
+	
+});</script>
 <header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top">
 			<a class="navbar-brand" href="exampleHome.php">BuildUp</a>
@@ -6,10 +59,30 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			
 			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
 				<ul class="navbar-nav mr-auto"> 
+				
 					<li class="nav-item active"><a class="nav-link"
 						href="exampleProjects.php"> Projects</a></li>
+						
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Monitoring </a>
+						
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown" id = "list_proj">
+							
+						<!-- 
+							<div class="dropdown-item">
+								<a href = "exampleProjects.php#active">All
+								projects</a>
+							</div>
+								<div class="dropdown-divider"></div>
+							 -->
+						</div>
+						</li>
+						
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
