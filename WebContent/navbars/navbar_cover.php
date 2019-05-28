@@ -23,5 +23,5 @@
 			</div>
 		</nav>
 	</header>
-	<link rel="stylesheet" href="styles/cover_styles.css">
-	<script type="text/javascript" src="scripts/cover_functions.js"></script>
+	<link rel="stylesheet" href="../styles/cover_styles.css">
+	<script type="text/javascript" src="../scripts/cover_functions.js"></script>
