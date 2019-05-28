@@ -31,8 +31,3 @@ html, body {
 	float:right;
 }
 
-.buttons{
-	display: flex;
-  align-items: center;
-  justify-content: center;
-}
