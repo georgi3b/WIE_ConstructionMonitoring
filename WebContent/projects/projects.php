@@ -24,89 +24,9 @@ if (!isset($_SESSION['user_id'])){
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="cover-functions.js"></script>
 <link rel="stylesheet" href="../styles/style.css">
 <title>Projects</title>
-<script>
-$(document).ready(function() {
-	
-	//var json_proj = ?php echo json_encode($list_proj);?>;
-	
-	var json_proj;
-	
-	$.when(
-			//get all the projects for the given user
-			$.ajax({
-				type:'post',
-				url:'../projects/user_projects_controller.php',
-				dataType:'json',
-				success: function(data, statusTxt, xmlht){
-					json_proj = data;
-				}
-		})
-	).then(function(){
-
-		if(window.location.hash == '#active'){
-			$.each(json_proj, function(idx, obj) {
-			//give only the results with active = true
-			 if(obj.active==='true'||obj.active){
-	    		 $('<tr>').attr('id',obj.proj_id).
-	    		 append($('<td>').text(obj.proj_id)).
-	    		  append($('<td>').text(obj.proj_name)).
-	    		  append($('<td>').text(obj.active)).
-	    		  append($('<td>').text(obj.proj_type)).
-	    		  append($('<td>').text(obj.company)).
-	    		  append($('<td>').
-	    		  append($('<form>'). attr({'method':'post','action':'../projects/project_info.php'})
-	    		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
-	    		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info"))
-	    			 )).appendTo("tbody#projects");
-	    		//append data to tbody with id "projects"
-	        	$('<td>').
-	        			append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
-	        			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
-	        			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor"))).
-	        			appendTo("tr#"+obj.proj_id);
-	    	
-				}				
-			});
-		}
-		else{
-		
-        	$.each(json_proj, function(idx, obj) {
-    
-        		 $('<tr>').attr('id',obj.proj_id).
-        		 append($('<td>').text(obj.proj_id)).
-        		  append($('<td>').text(obj.proj_name)).
-        		  append($('<td>').text(obj.active)).
-        		  append($('<td>').text(obj.proj_type)).
-        		  append($('<td>').text(obj.company)).
-        		  append($('<td>').
-        		  append($('<form>'). attr({'method':'post','action':'../projects/project_info.php'})
-        		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
-        		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info"))
-        			 )).appendTo("tbody#projects");
-        		//append data to tbody with id "projects"
-        		if(obj.active==='true'||obj.active){
-            		$('<td>').
-            			append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
-            			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
-            			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor"))).
-            			appendTo("tr#"+obj.proj_id);
-        		} else {
-        			$('<td>').text("Archived").appendTo("tr#"+obj.proj_id);
-            	}
-							
-			});
-		}
-    	$('input[name="id"]').hide();
-	});
-
-	//$('input[name="id"]').hide();
-	
-	//var user = '?php echo $u_mail;?>';			
-
-});
+<script type="text/javascript" src="../scripts/projects_functions.js" >
 </script>
 </head>
 <body>
@@ -114,7 +34,7 @@ $(document).ready(function() {
 <?php include '../navbars/navbar_active.php';?>
 <br>
 <br>
-	<div id="project-table">
+<div id="project-table">
 		<div class="projects">
 			<h2>Projects</h2>
 			<button class="btn btn-success  Redirect" id="showForm" onclick="window.location='../projects/new_project.php'">New Project</button>

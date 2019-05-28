@@ -60,7 +60,7 @@ $workersProj = $stmt4->fetchAll();
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../scripts/form_validation_functions.js"></script>
-<title>New Project</title>
+<title>Werkers</title>
 <script>
 $(document).ready(function() {
 

@@ -58,10 +58,9 @@ session_start();
 						alt="Image of Georgiana Bud" width="160" height="160">
 					<h2 style="padding-top: 20px; padding-bottom: 20px">Georgiana
 						Bud</h2>
-					<p>Duis mollis, est non commodo luctus, nisi erat porttitor
-						ligula, eget lacinia odio sem nec elit. Cras mattis consectetur
-						purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo,
-						tortor mauris condimentum nibh.</p>
+					<p>Computer Science student at the Free University of Bolzano.</p>
+					<p>Expert in databases and online communication, has gained with this web project
+					even more insight into the merveilleus world of Internet.</p>
 				</div>
 			</div>
 

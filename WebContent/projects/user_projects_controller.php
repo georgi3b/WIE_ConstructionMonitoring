@@ -13,7 +13,8 @@ if(isset($_SESSION['user_id'])){
 }
 
 $stmt = $conn->prepare("SELECT * FROM project
-WHERE u_mail =:u_mail");
+WHERE u_mail =:u_mail
+ORDER BY proj_id");
 $stmt->bindParam(':u_mail', $u_mail);
 $stmt->execute();
 $list_proj = $stmt->fetchAll();

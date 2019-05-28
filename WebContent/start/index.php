@@ -25,10 +25,7 @@ session_start();
 </head>
 <body>
 
-
-
 	<?php include '../navbars/navbar_cover.php';?>
-	
 	
 	<div id="home">
 		

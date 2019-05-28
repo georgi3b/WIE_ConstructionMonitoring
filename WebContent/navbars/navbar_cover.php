@@ -9,9 +9,9 @@
 			</button>
 			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="start/index.php">Home<span
+					<li class="nav-item active"><a class="nav-link" href="../start/index.php">Home<span
 							class="sr-only">(current)</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="start/about_us.php">About Us</a></li>
+					<li class="nav-item"><a class="nav-link" href="../start/about_us.php">About Us</a></li>
 
 				</ul>
 				<div class="form-inline mt-2 mt-md-0">

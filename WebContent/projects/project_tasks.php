@@ -20,6 +20,7 @@ if (isset($_SESSION['proj_id'])) {
 
 $tasks;
 
+
 $sql3 = "SELECT * FROM task WHERE proj_id= :proj_id";
 $stmt3 = $conn->prepare($sql3);
 $stmt3->bindParam(':proj_id', $proj_id);
@@ -50,14 +51,20 @@ $tasks = $stmt3->fetchAll();
 <script>
 $(document).ready(function() {
     var tasks =  <?php echo json_encode($tasks);?>;
+	
     $.each(tasks, function(idx, obj) {
     	$('<tr>').attr('id',obj.task_id).
 		  append($('<td>').attr('id','proj_id').text(obj.proj_id)).
+		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
 		  append($('<td>').attr('id','unit_name').text(obj.unit_name)).
 		  append($('<td>').attr('id','build_level').text(obj.build_level)).
-		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
-		  append($('<td>').attr('id','quantity').text(obj.quantity)).
 		  append($('<td>').attr('id','orientation').text(obj.orientation)).
+		  append($('<td>').attr('id','quantity').text(obj.quantity)).
+		  append($('<td>').
+      			append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
+      			.append($('<input>').attr({'name':'id','value':obj.proj_id,'type':'hidden'}))
+      			.append($('<input>').attr
+      	      			({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor project")))).
 			appendTo("#tasks_data tbody");
 		});
 });

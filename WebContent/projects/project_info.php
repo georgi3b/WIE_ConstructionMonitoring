@@ -168,8 +168,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div class="row pt-4 pt-lg-0">
     			
     			<div class="col-md-6">
-    				<button type="button" class="btn btn-primary" 
-        					onclick="window.location.href = '../monitoring/monitoring.php'">Monitor</button>
+    			<form method = "post" action="../monitoring/monitoring.php">
+    				<input name= "id" type="hidden" value='<?php echo($proj['proj_id'])?>'>
+    				<input name = "mon" type="submit" class="btn btn-primary" value="monitor">
+    			</form>
         		</div>
         		<div class="col-md-6 pt-4 pt-md-0 buttons">		
         			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">	
