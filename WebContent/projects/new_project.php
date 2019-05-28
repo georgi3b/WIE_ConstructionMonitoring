@@ -17,6 +17,8 @@ if(isset($_SESSION['user_id'])){
 <meta name="author" content="Anna Debiasi, Georgiana Bud">
 
 <link rel="stylesheet"
+	href="../styles/new_project_style.css">
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
