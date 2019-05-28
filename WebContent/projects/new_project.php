@@ -17,7 +17,7 @@ if(isset($_SESSION['user_id'])){
 <meta name="author" content="Anna Debiasi, Georgiana Bud">
 
 <link rel="stylesheet"
-	href="../styles/new_project_style.css">
+	href="../styles/project_style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -39,30 +39,30 @@ if(isset($_SESSION['user_id'])){
 
 </head>
 <body>
-		<?php include '../navbars/navbar_active.php';?>
-		<br>
+	<?php include '../navbars/navbar_active.php';?>
 	<br>
 	<br>
+	<div class="container justify-content-center align-items-center">
 	<div id="new_project">
-		<h2>Insert here the details of the project</h2>
+		<h2>New Project</h2>
 
 
-		<form class="needs-validation" novalidate method="post"
+		<form class="needs-validation form" novalidate method="post"
 			action="../projects/project_controller.php">
 			<div class="form-row">
-				<div class="col-md-3 w-100">
+				<div class="col-md-4 w-100">
 					<label for="proj_name">Name</label> <input type="text"
 						name="proj_name" placeholder="" maxlength="32" value=""
 						class="form-control" required>
-					<div class="invalid-feedback">Please insert a name.</div>
+<!--					<div class="invalid-feedback">Please insert a name.</div>-->
 				</div>
-				<div class="col-md-3 w-100">
+				<div class="col-md-4 w-100">
 					<label for="company">Company</label> <input type="text"
 						name="company" placeholder="" value="" class="form-control"
 						required>
 				</div>
 
-				<div class="col-md-3 w-100">
+				<div class="col-md-4 w-100">
 					<label for="proj_type">Type of project</label> <select
 						id="proj_type_dropd" name="proj_type" class="form-control"
 						required>
@@ -70,7 +70,7 @@ if(isset($_SESSION['user_id'])){
 				</div>
 			</div>
 			<div class="form-row">
-				<div class="col-md-9 w-100">
+				<div class="col-md-12 w-100">
 					<label for="description">Description</label>
 					<textarea name="description" placeholder="" value=""
 						class="form-control" maxlength="512" rows="2" required></textarea>
@@ -78,31 +78,31 @@ if(isset($_SESSION['user_id'])){
 
 			</div>
 			<br />
-			<h3>Address</h3>
+			<h5>Address</h5>
 			<div class="form-row">
-				<div class="col-md-6 w-100">
+				<div class="col-md-8 w-100">
 					<label for="street">Street</label> <input id="p_street" type="text"
 						name="street" placeholder="" value="" class="form-control"
 						required />
 				</div>
-				<div class="col-md-3 w-100">
+				<div class="col-md-4 w-100">
 					<label for="street_no">Street no</label> <input id="p_street_no"
 						type="text" name="street_no" placeholder="" value=""
 						class="form-control" required />
 				</div>
 			</div>
 			<div class="form-row">
-				<div class="col-md-3 w-100">
+				<div class="col-md-4 w-100">
 					<label for="city">City</label> <input id="p_city" type="text"
 						name="city" placeholder="" value="" class="form-control" required />
 				</div>
-				<div class="col-md-3 w-100">
+				<div class="col-md-4 w-100">
 					<label for="post_code">Post code</label> <input id="p_post"
 						type="text" name="post_code" placeholder="" value=""
 						class="form-control" required />
 				</div>
 
-				<div class="col-md-3 w-100">
+				<div class="col-md-4 w-100">
 					<label for="country">Country</label> <select
 						onmousedown="if(this.options.length>5){this.size=5;}"
 						onchange='this.size=0;' onblur="this.size=0;" id="countries"
@@ -116,8 +116,8 @@ if(isset($_SESSION['user_id'])){
 
 			<br />
 			<div class="form-row">
-				<div class="col-9">
-					<div class="btn-group" role="group">
+				<div class="col-12">
+					<div class="" role="group">
 
 						<input type="submit" name="save_proj"
 							class="btn btn-success mr-1 ml-1" value="Save"> <input
@@ -130,6 +130,7 @@ if(isset($_SESSION['user_id'])){
 			</div>
 		</form>
 
+	</div>
 	</div>
 </body>
 </html>

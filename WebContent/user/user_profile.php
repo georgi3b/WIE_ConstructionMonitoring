@@ -80,16 +80,16 @@ $projects = $stmt->fetchAll();
 						<div class="col-lg-12" style="padding: -20px;">
 							<ul>
 								<?php foreach($projects as $proj): ?>
-								<li><?php echo($proj[2]); ?>, <?php echo($proj[5]); ?></li>
+								<li class="list"><?php echo($proj[2]); ?>, <?php echo($proj[5]); ?></li>
 								<?php endforeach;?>
 							</ul>
 						</div>
 						<?php else:?>
 						<p>You are not supervising any projects. <a href="../projects/new_project.php">Create a new Project</a></p>
 						<?php endif?>
-					<button style="margin-top: 20px;"
+					<!--<button style="margin-top: 20px;"
 						class="btn btn-outline-primary mr-1" type="button">edit
-						info</button>
+						info</button>-->
 				</div>
 			</div>
 

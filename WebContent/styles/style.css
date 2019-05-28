@@ -78,7 +78,7 @@ ul {
   list-style-type: none;
 }
 
-.profile_list ul li:before {
+.list:before {
   content: '\2014';
   position: absolute;
   margin-left: -35px;

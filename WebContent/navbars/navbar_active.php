@@ -102,8 +102,6 @@ $(document).ready(function() {
 			</ul>
 			<div class="form-inline mt-2 mt-md-0">
 				<form>
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Search" aria-label="Search">
 					<!-- button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button-->
 					<a class="btn btn-light red" href="../user/user_logout_controller.php">Logout</a>
 				</form>
@@ -111,4 +109,5 @@ $(document).ready(function() {
 		</div>
 	</nav>
 </header>
+
 <link rel="stylesheet" href="../styles/cover_styles.css">

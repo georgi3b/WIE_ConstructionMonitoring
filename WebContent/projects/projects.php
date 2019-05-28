@@ -15,6 +15,8 @@ if (!isset($_SESSION['user_id'])){
 <meta name="description" content="">
 <meta name="author" content="Anna Debiasi, Georgiana Bud">
 <link rel="stylesheet"
+	href="../styles/project_style.css">
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -110,8 +112,14 @@ $(document).ready(function() {
 <body>
 
 <?php include '../navbars/navbar_active.php';?>
+<br>
+<br>
 	<div id="project-table">
-		<h2>Projects</h2>
+		<div class="projects">
+			<h2>Projects</h2>
+			<button class="btn btn-success  Redirect" id="showForm" onclick="window.location='../projects/new_project.php'">New Project</button>
+		</div>
+		
 		<div id="table">
 			<table class="table" id="data">
 				<thead>
@@ -129,11 +137,10 @@ $(document).ready(function() {
 				</tbody>
 			</table>
 		</div>
-	</div>
+	
 
-	<button class="btn btn-outline-success  Redirect" id="showForm"
-		onclick="window.location='../projects/new_project.php'">New Project</button>
-
+	
+</div>
 
 </body>
 </html>

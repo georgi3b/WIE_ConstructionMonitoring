@@ -99,6 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet"
+	href="../styles/project_style.css">
 <link rel="stylesheet" href="../styles/style.css">
 <title>Project information</title>
 </head>
@@ -106,26 +108,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 		
 	<?php include '../navbars/navbar_active.php';?>
+	<br><br>
 
-	<br><br><br>
-	<div class="container d-flex align-items-center justify-content-center min-vh-100 profile">
+	<div class="container  justify-content-center profile">
 
 		<div class="proj-info">
 			
 				<?php if($_SERVER["REQUEST_METHOD"] === "POST"||isset($_SESSION['proj_id'])):?>
 					<?php if(isset($_POST['info'])||isset($_SESSION['proj_id'])): ?>
-						<h5 style="padding-top: 20px; padding-bottom: 20px">Project <?php echo ($proj_id);?>
-							information</h5>
+						<h5 style="padding-top: 20px; padding-bottom: 20px"><?php echo($proj['proj_name']);?>
+							 - information</h5>
 			<span><?php echo($err);?></span>
 			<hr></hr>
 			<div class="row">
 				<div class="col-lg-1">
-					<p>Name:
+					<p>ProjectID:
 					<p>
 				
 				</div>
 				<div class="col-lg-2">
-					<p><?php echo($proj['proj_name']); ?></p>
+					<p><?php echo ($proj_id); ?></p>
 				</div>
 				<div class="col-lg-1">
 					<p>Company:
@@ -158,23 +160,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</div>
 			</div>
 			<div class="row pt-4 pt-lg-0">
-				<div class="col-lg-1 ">
-					<p>Description:
-					<p>
-				
-				</div>
-				<div class="col-lg-5">
-								<?php echo($proj['description']); ?>
+				<div class="col-lg-12">
+					<?php echo($proj['description']); ?> 
 				</div>
 			</div>
-			
+			<br>
 			<div class="row pt-4 pt-lg-0">
     			
     			<div class="col-md-6">
     				<button type="button" class="btn btn-primary" 
         					onclick="window.location.href = '../monitoring/monitoring.php'">Monitor</button>
         		</div>
-        		<div class="col-md-6 pt-4 pt-md-0">		
+        		<div class="col-md-6 pt-4 pt-md-0 buttons">		
         			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">	
         			<?php if($proj['active']=="true"):?>
     				
@@ -211,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
 			<div class="row pt-4 pt-lg-0">
 
-				<div class="col-lg-3">
+				<div class="col-lg-3 buttons">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="workers">
@@ -219,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							onclick="window.location.href = '../projects/workers_setup.php';">Workers</button>
 					</div>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-3 buttons">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="Main working areas/types">
@@ -228,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							types</button>
 					</div>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-3 buttons">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="activities">
@@ -236,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						onclick="window.location.href = '../projects/project_activities.php'">Activities</button>
 					</div>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-3 buttons">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="tasks">

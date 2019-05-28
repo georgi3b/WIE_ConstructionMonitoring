@@ -1,0 +1,38 @@
+@charset "ISO-8859-1";
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+#new_project{
+	height: 100%;
+	display:table-cell;
+	padding: 25px;
+	position:relative;
+    top:50%;
+    width:50%;
+}
+.container-table {
+    display: table;
+    vertical-align:middle;
+    width: 100%;
+	height: 100%;
+}
+
+#project-table{
+	margin:20px;
+}
+
+.projects>h2{
+	float:left;
+}
+.projects>button{
+	float:right;
+}
+
+.buttons{
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
