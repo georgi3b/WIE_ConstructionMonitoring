@@ -43,11 +43,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $contract= clean_input($_POST['contract']);
         $phone_no = clean_input($_POST['telephone']);
         $email = clean_input($_POST['email']);
-        $street = clean_input($_POST['street']);
-        $street_no = clean_input($_POST['street_no']);
-        $city = clean_input($_POST['city']);
-        $post_code = clean_input($_POST['post_code']);
-        $country =  clean_input($_POST['country']);
+        $street = clean_input($_POST['w_street']);
+        $street_no = clean_input($_POST['w_street_no']);
+        $city = clean_input($_POST['w_city']);
+        $post_code = clean_input($_POST['w_post_code']);
+        $country =  clean_input($_POST['w_country']);
         
         if (!is_numeric($phone_no)) {
             $phone_noErr = "Telephone must be a number.";

@@ -145,7 +145,7 @@ $(document).ready(function() {
 			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
 					<div class="col-9">
-						<input type="submit" class="btn btn-success-primary" name="back"
+						<input type="submit" class="btn btn-success" name="back"
 							value="Back to project">
 						
 					</div>
@@ -222,33 +222,33 @@ $(document).ready(function() {
 				<h3>Address</h3>
 				<div class="form-row">
 					<div class="col-md-6 w-100 pt-4 pt-lg-2">
-						<label for="street">Street</label> <input id="w_street"
-							type="text" name="street" placeholder="" value="" maxlength="32"
+						<label for="w_street">Street</label> <input id="w_street"
+							type="text" name="w_street" placeholder="" value="" maxlength="32"
 							class="form-control" required />
 					</div>
 					<div class="col-md-3 w-100 pt-4 pt-lg-2">
-						<label for="street_no">Street no</label> <input id="w_street_no"
-							type="text" name="street_no" placeholder="" value=""
+						<label for="w_street_no">Street no</label> <input id="w_street_no"
+							type="text" name="w_street_no" placeholder="" value=""
 							maxlength="8" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="col-md-3 w-100 pt-4 pt-lg-2">
-						<label for="city">City</label> <input id="w_city" type="text"
-							name="city" placeholder="" value="" class="form-control"
+						<label for="w_city">City</label> <input id="w_city" type="text"
+							name="w_city" placeholder="" value="" class="form-control"
 							maxlength="32" required />
 					</div>
 					<div class="col-md-3 w-100 pt-4 pt-lg-2">
-						<label for="post_code">Post code</label> <input id="w_post"
-							type="text" name="post_code" placeholder="" value=""
+						<label for="w_post_code">Post code</label> <input id="w_post"
+							type="text" name="w_post_code" placeholder="" value=""
 							maxlength="8" class="form-control" required />
 					</div>
 
 					<div class="col-md-3 w-100 pt-4 pt-lg-2">
-						<label for="country">Country</label> <select
+						<label for="w_country">Country</label> <select
 							onmousedown="if(this.options.length>5){this.size=5;}"
 							onchange="this.size=0;" onblur="this.size=0;" id="countries"
-							name="country" class="form-control" required>
+							name="w_country" class="form-control" required>
 						</select>
 					</div>
 				</div>
