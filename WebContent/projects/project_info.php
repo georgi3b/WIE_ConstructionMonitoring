@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-require_once ('connectDB.php');
-$instance = ConnectDB::getInstance();
-$conn = $instance->getConnection();
-
 if(isset($_SESSION['user_id'])){
     $u_mail = $_SESSION['user_id']->u_mail;
 }else{
-    header("location:index.php");
+    header("location:../start/index.php");
 }
+require_once ('../start/connectDB.php');
+$instance = ConnectDB::getInstance();
+$conn = $instance->getConnection();
+
 
 // I need to get the id of the project that was selected/inserted, in order to store it
 // into a session variable and to access it from next file
@@ -30,6 +30,8 @@ if (isset($_SESSION['proj_id'])) {
         $err = $e->getMessage();
         echo ("Error: " . $e->getMessage());
     }
+}else{
+    header("location:../projects/new_project.php");
 }
 
 // the user is in this page because he chosed the project from the list of projects
@@ -97,13 +99,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../styles/style.css">
 <title>Project information</title>
 </head>
 
 <body>
 		
-	<?php include 'navbarActive.php';?>
+	<?php include '../navbars/navbar_active.php';?>
 
 	<br><br><br>
 	<div class="container d-flex align-items-center justify-content-center min-vh-100 profile">
@@ -170,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     			
     			<div class="col-md-6">
     				<button type="button" class="btn btn-primary" 
-        					onclick="window.location.href = 'monitoring.php'">Monitor</button>
+        					onclick="window.location.href = '../monitoring/monitoring.php'">Monitor</button>
         		</div>
         		<div class="col-md-6 pt-4 pt-md-0">		
         			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">	
@@ -214,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<hr></hr>
 					<div id="workers">
 						<button type="submit" name="workers" class="btn btn-primary"
-							onclick="window.location.href = 'workers_setup.php';">Workers</button>
+							onclick="window.location.href = '../projects/workers_setup.php';">Workers</button>
 					</div>
 				</div>
 				<div class="col-lg-3">
@@ -222,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<hr></hr>
 					<div id="Main working areas/types">
 						<button type="submit" name="work_types" class="btn btn-primary" 
-						onclick="window.location.href = 'proj_work_types.php'">Work
+						onclick="window.location.href = '../projects/../projects/project_work_types.php'">Work
 							types</button>
 					</div>
 				</div>
@@ -231,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<hr></hr>
 					<div id="activities">
 						<button type="submit" name="activities" class="btn btn-primary" 
-						onclick="window.location.href = 'proj_activities.php'">Activities</button>
+						onclick="window.location.href = '../projects/project_activities.php'">Activities</button>
 					</div>
 				</div>
 				<div class="col-lg-3">
@@ -239,7 +241,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<hr></hr>
 					<div id="tasks">
 						<button type="submit" name="tasks" class="btn btn-primary"
-						onclick="window.location.href = 'proj_tasks.php'">Work
+						onclick="window.location.href = '../projects/project_tasks.php'">Work
 							units/Tasks</button>
 					</div>
 				</div>

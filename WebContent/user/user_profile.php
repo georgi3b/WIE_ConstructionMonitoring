@@ -4,10 +4,10 @@ session_start();
 if(isset($_SESSION['user_id'])){
     $id = $_SESSION['user_id'];
 }else{
-    header("location:index.php");
+    header("location:../start/index.php");
 }
 
-require_once ('connectDB.php');
+require_once ('../start/connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
@@ -34,20 +34,20 @@ $projects = $stmt->fetchAll();
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="cover-functions.js"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../styles/style.css">
 <title>User profile</title>
 </head>
 <body>
 
-	<?php include 'navbarActive.php';?>
-	<main role="main">
+	<?php include '../navbars/navbar_active.php';?>
+	
 	<div
 		class="container d-flex align-items-center justify-content-center min-vh-100 profile">
 		<div class="row">
 			<div class="col-lg-4">
 				<div
 					class="user-img" style="text-align: center">
-					<img class="rounded-circle" src="user_icon.png"
+					<img class="rounded-circle" src="../images/user_icon.png"
 						alt="Image of Anna Debiasi" width="220" height="220">
 
 				</div>
@@ -85,7 +85,7 @@ $projects = $stmt->fetchAll();
 							</ul>
 						</div>
 						<?php else:?>
-						<p>You are not supervising any projects. <a href="#">Create a new Project</a></p>
+						<p>You are not supervising any projects. <a href="../projects/new_project.php">Create a new Project</a></p>
 						<?php endif?>
 					<button style="margin-top: 20px;"
 						class="btn btn-outline-primary mr-1" type="button">edit
@@ -95,6 +95,6 @@ $projects = $stmt->fetchAll();
 
 		</div>
 	</div>
-	</main>
+	
 </body>
 </html>

@@ -1,13 +1,13 @@
 <?php 
 session_start();
-require_once ('connectDB.php');
+require_once ('../start/connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
 if(isset($_SESSION['user_id'])){
     $u_mail = $_SESSION['user_id']->u_mail;
 }else{
-    header("location:index.php");
+    header("location:../start/index.php");
 }
 
 $proj_id = 80;
@@ -35,7 +35,7 @@ $w_name = $role = $contract= $phone_no = $email = $country = $city = $post_code 
 $phone_noErr;
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if (!empty($_POST['back'])){
-        header("Location:project_info.php");
+        header("Location:../projects/project_info.php");
     }
     if(!empty($_POST['save_worker'])){    //for POST you use the name attribute
         $w_name = clean_input($_POST['worker_name']);
@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         if (!is_numeric($phone_no)) {
             $phone_noErr = "Telephone must be a number.";
-            header("Location:workers_setup.php#phoneErr");
+            header("Location:../projects/workers_setup.php#phoneErr");
         } else{
             try{
             $done;
@@ -78,15 +78,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     ':contract'=>$contract));
             if($done){
             $conn->commit();
-            header("Location:workers_setup.php");
+            header("Location:../projects/workers_setup.php");
             } else{
-                header("Location:workers_setup.php#retry");
+                header("Location:../projects/workers_setup.php#retry");
             }
-           // header("Location:project_info.php");
+           // header("Location:../projects/project_info.php");
             } catch (PDOException $e) {
                 $conn->rollBack();
                 echo $e->getMessage();
-                header("Location:workers_setup.php#retry");
+                header("Location:../projects/workers_setup.php#retry");
             }
             
         }
@@ -101,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $delete_wp = $conn->prepare("DELETE from worker_project WHERE w_name=:w_name
             AND proj_id=:proj_id");
             $delete_wp->execute(array(':w_name'=> $w_name,':proj_id'=>$proj_id));
-            header("Location:workers_setup.php");
+            header("Location:../projects/workers_setup.php");
             
         }
     

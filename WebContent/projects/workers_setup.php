@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once ('connectDB.php');
+require_once ('../start/connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
 if(isset($_SESSION['user_id'])){
     $u_mail = $_SESSION['user_id']->u_mail;
 }else{
-    header("location:index.php");
+    header("location:../start/index.php");
 }
 
 $proj_id = 80;
@@ -59,7 +59,7 @@ $workersProj = $stmt4->fetchAll();
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="form-validation.js"></script>
+<script type="text/javascript" src="../scripts/form_validation_functions.js"></script>
 <title>New Project</title>
 <script>
 $(document).ready(function() {
@@ -92,7 +92,7 @@ $(document).ready(function() {
 		  append($('<td>').attr('id','address').text(obj.street+", "+
 		  obj.street_no +", " + obj.city+", " + obj.post_code+", "+obj.country)).
 		  append($('<td>').
-		  append($('<form>'). attr({'method':'post','action':'worker_management.php'})
+		  append($('<form>'). attr({'method':'post','action':'../projects/worker_controller.php'})
 				  .append($('<input>').attr({'name':'name','value':obj.w_name,'type':'hidden'}))
 				  .append($('<input>').attr({'name':'delete','type': 'submit','class':'btn btn-danger'}).val("Delete")
 						  ))).
@@ -109,7 +109,7 @@ $(document).ready(function() {
 	var countries;
 	$.when($.ajax({
 				type:'post',
-				url:'countries.php',
+				url:'../projects/countries.php',
 				dataType:'json',
 				success: function(data, statusTxt, xmlht){
 					countries = data;
@@ -131,9 +131,9 @@ $(document).ready(function() {
 		<?php 
 
     		if (isset($_SESSION['user_id'])){
-    		  include 'navbarActive.php';}
+    		  include '../navbars/navbar_active.php';}
     		else{
-    		  include 'navbarCover.php';
+    		  include '../navbars/navbar_cover.php';
     		}
 	   ?>
 		<br>
@@ -142,7 +142,7 @@ $(document).ready(function() {
 	<div>
 		<h3>Workers for project with id: '<?php echo($proj_id);?>'</h3>
 		<div>
-			<form action="worker_management.php" method="post">
+			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
 					<div class="col-9">
 						<input type="submit" class="btn btn-success-primary" name="back"
@@ -185,7 +185,7 @@ $(document).ready(function() {
 				Worker</button>
 		</div>
 		<div id="new_worker_div">
-			<form action="worker_management.php" method="post"
+			<form action="../projects/worker_controller.php" method="post"
 				class="needs-validation" novalidate>
 				<h3>New worker information</h3>
 				<div class="form-row">

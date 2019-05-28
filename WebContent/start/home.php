@@ -4,7 +4,7 @@ session_start();
 if(isset($_SESSION['user_id'])){
     $u_mail = $_SESSION['user_id']->u_mail;
 }else{
-    header("location:index.php");
+    header("location:start/index.php");
 }
 
 
@@ -25,7 +25,7 @@ if(isset($_SESSION['user_id'])){
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="cover-functions.js"></script>
+<script type="text/javascript" src="../cover-functions.js"></script>
 <script>
 $(document).ready(function() {
 	
@@ -37,7 +37,7 @@ $(document).ready(function() {
 			//get all the projects for the given user
 			$.ajax({
 				type:'post',
-				url:'user_projects.php',
+				url:'../projects/user_projects_controller.php',
 				dataType:'json',
 				success: function(data, statusTxt, xmlht){
 					allProj = data;
@@ -52,7 +52,7 @@ $(document).ready(function() {
     		$('<h1>').attr({'value':'Project ' + last.proj_id})
     					.text('Project ' + last.proj_id + ": " + last.proj_name).appendTo('#last_proj');
     		$('<p>').text(last.description).appendTo('#last_proj');
-    		$('<form>').attr({'method':'post','action':'project_info.php'})
+    		$('<form>').attr({'method':'post','action':'projects/project_info.php'})
     		.append($('<input>').attr({'name':'id','value':last.proj_id,'type':'hidden'}))
     		.append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-primary'}).val("more info"))
     		  .appendTo('#last_proj');
@@ -66,7 +66,7 @@ $(document).ready(function() {
         
         		$('<p>').text(sec_last.description).appendTo('#sec_last_proj');
         
-        		$('<form>').attr({'method':'post','action':'project_info.php'})
+        		$('<form>').attr({'method':'post','action':'projects/project_info.php'})
         		.append($('<input>').attr({'name':'id','value':sec_last.proj_id,'type':'hidden'}))
         		.append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-primary'}).val("more info"))
         		  .appendTo('#sec_last_proj');
@@ -83,16 +83,16 @@ $(document).ready(function() {
 
 });
 </script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../styles/style.css">
 <title>Home</title>
 </head>
 <body>
 	<?php 
 
 		if (isset($_SESSION['user_id'])){
-		  include 'navbarActive.php';}
+		  include '../navbars/navbar_active.php';}
 		else{
-		  include 'navbarCover.php';
+		  include '../navbars/navbar_cover.php';
 		}
 	?>
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -124,7 +124,7 @@ $(document).ready(function() {
               <div class="carousel-caption" id = "new_proj">
                 <h1>Create a new project</h1>
                 <button class="btn btn-primary Redirect"
-						onclick="window.location='new_project.php'">New Project</button>
+						onclick="window.location='../projects/new_project.php'">New Project</button>
               </div>
             </div>
           </div>

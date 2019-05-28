@@ -1,20 +1,21 @@
 <?php
 session_start();
-require_once ('connectDB.php');
-$instance = ConnectDB::getInstance();
-$conn = $instance->getConnection();
 
 if(isset($_SESSION['user_id'])){
     $u_mail = $_SESSION['user_id']->u_mail;
 }else{
-    header("location:index.php");
+    header("location:../start/index.php");
 }
+require_once ('../start/connectDB.php');
+$instance = ConnectDB::getInstance();
+$conn = $instance->getConnection();
 
-$proj_id = 80;
 // project id is obtained from session or from page before
 // after inserting project the corresponding already defined data is retrieved
 if (isset($_SESSION['proj_id'])) {
     $proj_id = $_SESSION['proj_id'];
+}else{
+    header("location:../projects/projects.php");
 }
 
 $sql2 = "SELECT WT.work_type_id,WT.description, WT.proj_type FROM work_type as WT, project as P WHERE
@@ -44,8 +45,8 @@ $work_types = $stmt2->fetchAll();
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="form-validation.js"></script>
-<title>New Project</title>
+<script type="text/javascript" src="../scripts/form_validation_functions.js"></script>
+<title>Project Work Types</title>
 <script>
 $(document).ready(function() {
     var work_types =  <?php echo json_encode($work_types);?>;
@@ -60,7 +61,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-		<?php include 'navbarActive.php';?>
+		<?php include '../navbars/navbar_active.php';?>
 		<br>
     	<br>
     	<br>

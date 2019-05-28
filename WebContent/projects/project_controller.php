@@ -4,9 +4,9 @@ $u_mail;
 if(isset($_SESSION['user_id'])){
 	$u_mail = $_SESSION['user_id']->u_mail;
 }else{
-	header("location:index.php");
+	header("location:../start/index.php");
 }
-require_once('connectDB.php');
+require_once('../start/connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
@@ -59,14 +59,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				$proj_id = $conn->lastInsertId();
 				if($done){
     				$_SESSION['proj_id']=$proj_id;
-    				header("Location:project_info.php");
+    				header("Location:../projects/project_info.php");
 				} else{
-				    header("Location:new_project.php#retry");
+				    header("Location:../projects/new_project.php#retry");
 				}
 			} catch(PDOException $e){
 				$done = false;
 				echo "Insertion failed: ".$e->getMessage()."</br>";
-				header("Location:new_project.php#retry");
+				header("Location:../projects/new_project.php#retry");
 			}
 		
 	$proj_name = $company = $proj_type = $country = $city = $post_code = $street = $street_no = $description = "";

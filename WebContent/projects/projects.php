@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])){
+	header("location:../start/index.php");
+	}
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +23,7 @@ session_start();
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="cover-functions.js"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../styles/style.css">
 <title>Projects</title>
 <script>
 $(document).ready(function() {
@@ -32,7 +36,7 @@ $(document).ready(function() {
 			//get all the projects for the given user
 			$.ajax({
 				type:'post',
-				url:'user_projects.php',
+				url:'../projects/user_projects_controller.php',
 				dataType:'json',
 				success: function(data, statusTxt, xmlht){
 					json_proj = data;
@@ -51,13 +55,13 @@ $(document).ready(function() {
 	    		  append($('<td>').text(obj.proj_type)).
 	    		  append($('<td>').text(obj.company)).
 	    		  append($('<td>').
-	    		  append($('<form>'). attr({'method':'post','action':'project_info.php'})
+	    		  append($('<form>'). attr({'method':'post','action':'../projects/project_info.php'})
 	    		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
 	    		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info"))
 	    			 )).appendTo("tbody#projects");
 	    		//append data to tbody with id "projects"
 	        	$('<td>').
-	        			append($('<form>').attr({'method':'post','action':'monitoring.php'})
+	        			append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
 	        			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
 	        			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor"))).
 	        			appendTo("tr#"+obj.proj_id);
@@ -76,14 +80,14 @@ $(document).ready(function() {
         		  append($('<td>').text(obj.proj_type)).
         		  append($('<td>').text(obj.company)).
         		  append($('<td>').
-        		  append($('<form>'). attr({'method':'post','action':'project_info.php'})
+        		  append($('<form>'). attr({'method':'post','action':'../projects/project_info.php'})
         		  .append($('<input>').attr({'name':'id','value':obj.proj_id}))
         		  .append($('<input>').attr({'name':'info','type': 'submit','class':'btn btn-outline-primary'}).val("more info"))
         			 )).appendTo("tbody#projects");
         		//append data to tbody with id "projects"
         		if(obj.active==='true'||obj.active){
             		$('<td>').
-            			append($('<form>').attr({'method':'post','action':'monitoring.php'})
+            			append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
             			.append($('<input>').attr({'name':'id','value':obj.proj_id}))
             			.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor"))).
             			appendTo("tr#"+obj.proj_id);
@@ -105,16 +109,7 @@ $(document).ready(function() {
 </head>
 <body>
 
-
-	<?php 
-
-		if (isset($_SESSION['user_id'])){
-		  include 'navbarActive.php';}
-		else{
-		  include 'navbarCover.php';
-		}
-	?>
-
+<?php include '../navbars/navbar_active.php';?>
 	<div id="project-table">
 		<h2>Projects</h2>
 		<div id="table">
@@ -137,7 +132,7 @@ $(document).ready(function() {
 	</div>
 
 	<button class="btn btn-outline-success  Redirect" id="showForm"
-		onclick="window.location='new_project.php'">New Project</button>
+		onclick="window.location='../projects/new_project.php'">New Project</button>
 
 
 </body>

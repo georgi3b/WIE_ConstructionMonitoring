@@ -1,14 +1,15 @@
 <?php
 session_start();
-require_once ('connectDB.php');
+if(isset($_SESSION['user_id'])){
+	$u_mail = $_SESSION['user_id']->u_mail;
+}else{
+	header("location:../start/index.php");
+}
+require_once ('../start/connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
-if(isset($_SESSION['user_id'])){
-    $u_mail = $_SESSION['user_id']->u_mail;
-}else{
-    header("location:index.php");
-}
+
 
 $proj_id;
 // project id is obtained from session or from page before
@@ -52,8 +53,8 @@ $activities= $stmt->fetchAll();
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="form-validation.js"></script>
-<title>New Project</title>
+<script type="text/javascript" src="../scripts/form_validation_functions.js"></script>
+<title>Project Activities</title>
 <script>
 $(document).ready(function() {
     var activities =  <?php echo json_encode($activities);?>;
@@ -70,7 +71,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-		<?php include 'navbarActive.php';?>
+		<?php include '../navbars/navbar_active.php';?>
 		<br>
     	<br>
     	<br>

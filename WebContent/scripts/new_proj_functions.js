@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$.when(
 		$.ajax({
 				type:'post',
-				url:'countries.php',
+				url:'../projects/countries.php',
 				dataType:'json',
 				success: function(data, statusTxt, xmlht){
 					countries = data;
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 		$.ajax({
 				type:'post',
-				url:'proj_types.php',
+				url:'../projects/project_types_controller.php',
 				dataType:'json',
 				success: function(data, statusTxt, xmlht){
 						proj_types = data;

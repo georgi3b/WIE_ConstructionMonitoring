@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['active_proj'])) {
-        header("Location:exampleProjects.php#active");
+        header("Location:../projects/projects.php#active");
         unset($_POST['active_proj']);
     } 
 }
@@ -16,7 +16,7 @@ $(document).ready(function() {
 			//get all the projects for the given user
 			$.ajax({
 				type:'post',
-				url:'user_projects.php',
+				url:'../projects/user_projects_controller.php',
 				dataType:'json',
 				success: function(data, statusTxt, xmlht){
 					allProj = data;
@@ -29,7 +29,7 @@ $(document).ready(function() {
 			last = allProj[allProj.length-1];
 
 			$('<div>').attr({'class':'dropdown-item'})
-			.append($('<form>').attr({'method':'post','action':'monitoring.php'})
+			.append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
     		.append($('<input>').attr({'name':'id','value':last.proj_id,'type':'hidden'}))
     		.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn'}).val(last.proj_name)))
     		  .appendTo('#list_proj');
@@ -38,7 +38,7 @@ $(document).ready(function() {
 			sec_last = allProj[allProj.length-2];
 
 			$('<div>').attr({'class':'dropdown-item'})
-			.append($('<form>').attr({'method':'post','action':'monitoring.php'})
+			.append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
     		.append($('<input>').attr({'name':'id','value':sec_last.proj_id,'type':'hidden'}))
     		.append($('<input>').attr({'name':'mon','type': 'submit','class':'btn'}).val(sec_last.proj_name)))
     		  .appendTo('#list_proj');
@@ -46,7 +46,7 @@ $(document).ready(function() {
 			
 		}else{
 			$('<div>').attr({'class':'dropdown-item'}).append(
-				$('<input>').attr({'class':'dropdown-item','onclick':'window.location="new_project.php"'}).text("New"))
+				$('<input>').attr({'class':'dropdown-item','onclick':'window.location="../projects/new_project.php"'}).text("New"))
 				.appendTo('#list_proj');
 		}
 
@@ -63,7 +63,7 @@ $(document).ready(function() {
 });</script>
 <header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top">
-		<a class="navbar-brand" href="exampleHome.php">BuildUp</a>
+		<a class="navbar-brand" href="../start/home.php">BuildUp</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarCollapse" aria-controls="navbarCollapse"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@ $(document).ready(function() {
 			<ul class="navbar-nav mr-auto">
 
 				<li class="nav-item active"><a class="nav-link"
-					href="exampleProjects.php"> Projects</a></li>
+					href="../projects/projects.php"> Projects</a></li>
 
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 					href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 						<!-- 
 							<div class="dropdown-item">
-								<a href = "exampleProjects.php#active">All
+								<a href = "../projects/projects.php#active">All
 								projects</a>
 							</div>
 								<div class="dropdown-divider"></div>
@@ -93,9 +93,9 @@ $(document).ready(function() {
 					</div></li>
 
 
-				<li class="nav-item"><a class="nav-link" href="MyProfile.php">My
+				<li class="nav-item"><a class="nav-link" href="../user/user_profile.php">My
 						Profile</a></li>
-				<li class="nav-item"><a class="nav-link" href="exampleAboutUs.php">About
+				<li class="nav-item"><a class="nav-link" href="../start/about_us.php">About
 						Us</a></li>
 						
 
@@ -105,10 +105,10 @@ $(document).ready(function() {
 					<input class="form-control mr-sm-2" type="search"
 						placeholder="Search" aria-label="Search">
 					<!-- button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button-->
-					<a class="btn btn-light red" href="user_logout.php">Logout</a>
+					<a class="btn btn-light red" href="../user/user_logout_controller.php">Logout</a>
 				</form>
 			</div>
 		</div>
 	</nav>
 </header>
-<link rel="stylesheet" href="cover-styles.css">
+<link rel="stylesheet" href="../styles/cover_styles.css">

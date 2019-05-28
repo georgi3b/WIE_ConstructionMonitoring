@@ -1,15 +1,17 @@
 <?php
 session_start();
-require_once ('connectDB.php');
+
+if(isset($_SESSION['user_id'])){
+	$u_mail = $_SESSION['user_id']->u_mail;
+}else{
+	header("location:../start/index.php");
+}
+require_once ('../start/connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
 
-$u_mail;
-if(isset($_SESSION['user_id'])){
-    $u_mail = $_SESSION['user_id']->u_mail;
-}else{
-    header("location:index.php");
-}
+
+
 
 $proj_id;
 // project id is obtained from session or from page before
@@ -52,7 +54,7 @@ $tasks = $stmt3->fetchAll();
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="form-validation.js"></script>
+<script type="text/javascript" src="../scripts/form_validation_functions.js"></script>
 <script>
 $(document).ready(function() {
     var tasks =  <?php echo json_encode($tasks);?>;
@@ -73,13 +75,13 @@ $(document).ready(function() {
 
 </head>
 <body>
-		<?php include 'navbarActive.php';?>
+		<?php include '../navbars/navbar_active.php';?>
 		<br>
     	<br>
     	<br>
     	<h3>Tasks for project with id: '<?php echo($proj_id);?>'</h3>
     	<div>
-			<form action="worker_management.php" method="post">
+			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
 					<div class="col-9">
 						<input type="submit" class="btn btn-success" name="back"

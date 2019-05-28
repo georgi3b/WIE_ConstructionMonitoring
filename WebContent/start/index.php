@@ -10,6 +10,7 @@ session_start();
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="Anna Debiasi, Georgiana Bud">
+<link rel="stylesheet" href="../styles/cover_styles.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -26,21 +27,21 @@ session_start();
 
 
 
-	<?php include 'navbarCover.php';?>
+	<?php include '../navbars/navbar_cover.php';?>
 	
 	
 	<div id="home">
 		
 		<div class="inner-cover" id="cover">
 			<h1 class="cover-heading">BuildUp</h1>
-			<h3>🚧⚠️Company description under construction.⚠️🚧</h3>
+			<h3>Company description under construction.</h3>
 			<p class="lead">
 				<a href="#" class="btn btn-lg btn-secondary" onclick="gotoRegister()">Get Started</a>
 			</p>
 		</div>
 		
 		<div id="register">
-			<form class="form-cover form-register" action="user_register.php" method="post">
+			<form class="form-cover form-register" action="../user/user_register_controller.php" method="post">
 				<h1 class="h3 mb-3 font-weight-normal">Register</h1>
 				<label for="inputName" class="sr-only">Username</label> <input
 					type="text" name="username" id="inputName" class="form-control"
@@ -72,7 +73,7 @@ session_start();
 		</div>
 
 		<div id="login" class="text-center">
-			<form class="form-cover form-login" action="user_login.php" method="post">
+			<form class="form-cover form-login" action="../user/user_login_controller.php" method="post">
 				<h1 class="h3 mb-3 font-weight-normal">Log In</h1>
 				<label for="inputEmail" class="sr-only">Email address</label> <input
 					type="email" name="email" id="inputMail" class="form-control"
