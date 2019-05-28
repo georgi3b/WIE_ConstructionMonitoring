@@ -42,10 +42,8 @@ session_start();
 						alt="Image of Anna Debiasi" width="160" height="160">
 					<h2 style="padding-top: 20px; padding-bottom: 20px">Anna
 						Debiasi</h2>
-					<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis
-						euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
-						Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-						Praesent commodo cursus magna.</p>
+					<p>Computer Science student at the Free University of Bolzano.</p>
+					<p>Expert in design and architecture, has enjoyed using all her creativity to develop a modern and beautiful style for the application.</p>
 					<!-- <img src="i.jpg"
 						alt="Signature of Anna Debiasi" width="220" height="120"> -->
 				</div>

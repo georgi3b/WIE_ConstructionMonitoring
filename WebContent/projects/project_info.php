@@ -116,12 +116,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			
 				<?php if($_SERVER["REQUEST_METHOD"] === "POST"||isset($_SESSION['proj_id'])):?>
 					<?php if(isset($_POST['info'])||isset($_SESSION['proj_id'])): ?>
-						<h5 style="padding-top: 20px; padding-bottom: 20px"><?php echo($proj['proj_name']);?>
-							 - information</h5>
+						<h4 style="padding-top: 20px; padding-bottom: 20px"><?php echo($proj['proj_name']);?>
+							 - information</h4>
 			<span><?php echo($err);?></span>
 			<hr></hr>
 			<div class="row">
-				<div class="col-lg-1">
+				<div class="col-lg-1 bold">
 					<p>ProjectID:
 					<p>
 				
@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div class="col-lg-2">
 					<p><?php echo ($proj_id); ?></p>
 				</div>
-				<div class="col-lg-1">
+				<div class="col-lg-1 bold">
 					<p>Company:
 					<p>
 				
@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div class="col-lg-2">
 					<p><?php echo($proj['company']); ?></p>
 				</div>
-				<div class="col-lg-1">
+				<div class="col-lg-1 bold">
 					<p>Type:
 					<p>
 				
@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<p><?php echo($proj['proj_type']); ?></p>
 				</div>
 				
-				<div class="col-lg-1 ">
+				<div class="col-lg-1 bold">
 					<p>Status:<p>
 				
 				</div>
