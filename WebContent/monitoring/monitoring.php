@@ -1,24 +1,16 @@
 <?php
 session_start();
 
-<<<<<<< HEAD:WebContent/monitoring/monitoring.php
-if(isset($_SESSION['user_id'])){
-	$u_mail = $_SESSION['user_id']->u_mail;
-}else{
-	header("location:../start/index.php");
-=======
 $u_mail;
 if (isset($_SESSION['user_id'])) {
     $u_mail = $_SESSION['user_id']->u_mail;
 } else {
-    header("location:index.php");
->>>>>>> master:WebContent/monitoring.php
+    header("location:../start/index.php");
 }
+
 require_once ('../start/connectDB.php');
 $instance = ConnectDB::getInstance();
 $conn = $instance->getConnection();
-
-
 
 
 $proj_id;
@@ -62,7 +54,7 @@ $tasks = $stmt3->fetchAll();
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../scripts/form_validation_functions.js"></script>
+<script type="text/javascript" src="../scripts/form-validation.js"></script>
 <script>
 
 </script>
@@ -70,23 +62,8 @@ $tasks = $stmt3->fetchAll();
 
 </head>
 <body>
-		<?php include '../navbars/navbar_active.php';?>
+		<?php include '../navbars/navbarActive.php';?>
 		<br>
-<<<<<<< HEAD:WebContent/monitoring/monitoring.php
-    	<br>
-    	<br>
-    	<h3>Tasks for project with id: '<?php echo($proj_id);?>'</h3>
-    	<div>
-			<form action="../projects/worker_controller.php" method="post">
-				<div class="form-row">
-					<div class="col-9">
-						<input type="submit" class="btn btn-success" name="back"
-							value="Back to project">
-						
-					</div>
-				</div>
-			</form>
-=======
 	<br>
 	<br>
 	<form>
@@ -125,7 +102,6 @@ $tasks = $stmt3->fetchAll();
 				<label for="RNC">RNC</label> <input type="checkbox" name="rnc"
 					value="ok">
 			</div>
->>>>>>> master:WebContent/monitoring.php
 		</div>
 		<div class="row">
 			<div class="col-md-3 w-100">
