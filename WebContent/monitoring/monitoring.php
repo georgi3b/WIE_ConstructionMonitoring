@@ -1,10 +1,18 @@
 <?php
 session_start();
 
+<<<<<<< HEAD:WebContent/monitoring/monitoring.php
 if(isset($_SESSION['user_id'])){
 	$u_mail = $_SESSION['user_id']->u_mail;
 }else{
 	header("location:../start/index.php");
+=======
+$u_mail;
+if (isset($_SESSION['user_id'])) {
+    $u_mail = $_SESSION['user_id']->u_mail;
+} else {
+    header("location:index.php");
+>>>>>>> master:WebContent/monitoring.php
 }
 require_once ('../start/connectDB.php');
 $instance = ConnectDB::getInstance();
@@ -56,20 +64,7 @@ $tasks = $stmt3->fetchAll();
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../scripts/form_validation_functions.js"></script>
 <script>
-$(document).ready(function() {
-    var tasks =  <?php echo json_encode($tasks);?>;
-    $.each(tasks, function(idx, obj) {
-    	$('<tr>').attr('id',obj.task_id).
-		  append($('<td>').attr('id','proj_id').text(obj.proj_id)).
-		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
-		  append($('<td>').attr('id','unit_name').text(obj.unit_name)).
-		  append($('<td>').attr('id','build_level').text(obj.build_level)).
-		  append($('<td>').attr('id','quantity').text(obj.quantity)).
-		  append($('<td>').attr('id','orientation').text(obj.orientation)).
-		  append($('<td>').attr({'class':'btn btn-primary','type':'button','onclick':'alert("Here the activities can be monitored.");'}).text("Monitor task")).
-			appendTo("#tasks_data tbody");
-		});
-});
+
 </script>
 <title>Tasks</title>
 
@@ -77,6 +72,7 @@ $(document).ready(function() {
 <body>
 		<?php include '../navbars/navbar_active.php';?>
 		<br>
+<<<<<<< HEAD:WebContent/monitoring/monitoring.php
     	<br>
     	<br>
     	<h3>Tasks for project with id: '<?php echo($proj_id);?>'</h3>
@@ -90,30 +86,64 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</form>
+=======
+	<br>
+	<br>
+	<form>
+		<div class="row">
+			<div class="col-md-3 w-100">
+				<label for="work_type">Type of work</label> <select
+					id="work_type_dropd" name="work_type" class="form-control" required>
+					<option>AB01</option>
+					<option>AB02</option>
+				</select>
+			</div>
+			<div class="col-md-3 w-100">
+				<label for="units">Unit</label> <select id="unit_dropd" name="units"
+					class="form-control" required>
+					<option>unit 1</option>
+					<option>unit 2</option>
+				</select>
+			</div>
+			<div class="col-md-1 w-100">
+				<label for="completed">Completed</label> <input type="checkbox"
+					name="completed" value="ok">
+			</div>
+			<div class="col-md-1 w-100">
+				<label for="progress">In progress</label> <input type="checkbox"
+					name="progress" value="ok">
+			</div>
+			<div class="col-md-1 w-100">
+				<label for="delay">Delay</label> <input type="checkbox" name="delay"
+					value="ok">
+			</div>
+			<div class="col-md-1 w-100">
+				<label for="ncr">NCR</label> <input type="checkbox" name="ncr"
+					value="ok">
+			</div>
+			<div class="col-md-1 w-100">
+				<label for="RNC">RNC</label> <input type="checkbox" name="rnc"
+					value="ok">
+			</div>
+>>>>>>> master:WebContent/monitoring.php
 		</div>
-    	<div id="tasks">
-    	<table class="table" id="tasks_data">
-			<thead>
-				<tr>
+		<div class="row">
+			<div class="col-md-3 w-100">
+				<label for="date">Date</label> <input type="text" name="date"
+					placeholder="" value="" class="form-control" required>
+			</div>
+			<div class="col-md-3 w-100">
+				<label for="note">Note</label> <input type="text" name="note"
+					placeholder="" value="" class="form-control" required>
+			</div>
+			<div class="col-md-3 w-100">
+				<label for="website">Website</label> <input type="text"
+					name="website" placeholder="" value="" class="form-control"
+					required>
+			</div>
+		</div>
+	</form>
 
-					<th data-field='proj_id'>Project ID</th>
-					<th data-field='work_type_id'>Work type id</th>
-					<th data-field='unit name'>Unit name</th>
-					<th data-field='level'>Level</th>
-					<th data-field='quantity'>Quantity</th>
-					<th data-field='orientation'>Orientation</th>
-					
-					<th>Action</th>
-
-				</tr>
-			</thead>
-			<tbody>
-
-			</tbody>
-
-
-		</table>
-    	</div>
 
 
 </body>
