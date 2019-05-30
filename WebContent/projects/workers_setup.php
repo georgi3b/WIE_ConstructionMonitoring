@@ -31,7 +31,9 @@ $stmt3->execute();
 $workersGen = $stmt3->fetchAll();
 
 // get the workers that were inserted by this user for this project
-$sql4 = "SELECT * FROM worker as W,project as P, worker_project as WP
+$sql4 = "SELECT W.w_name,W.role,W.phone_no,W.mail,W.country,
+W.city, W.post_code,W.street, W.street_no
+ FROM worker as W,project as P, worker_project as WP
 WHERE P.proj_id= :proj_id AND P.proj_id=WP.proj_id AND
 WP.w_name = W.w_name";
 $stmt4 = $conn->prepare($sql4);
