@@ -1,8 +1,5 @@
 <?php 
 session_start();
-require_once ('../start/connectDB.php');
-$instance = ConnectDB::getInstance();
-$conn = $instance->getConnection();
 
 if(isset($_SESSION['user_id'])){
     $u_mail = $_SESSION['user_id']->u_mail;
@@ -10,7 +7,11 @@ if(isset($_SESSION['user_id'])){
     header("location:../start/index.php");
 }
 
-$proj_id = 80;
+$proj_id;
+require_once ('../start/connectDB.php');
+$instance = ConnectDB::getInstance();
+$conn = $instance->getConnection();
+
 //project id is obtained from session or from page before
 if (isset($_SESSION['proj_id'])) {
     $proj_id = $_SESSION['proj_id'];
@@ -19,6 +20,37 @@ if (isset($_SESSION['proj_id'])) {
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST['info'])){
         $proj_id = $_POST['id'];
+    }
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if (!empty($_POST['back'])){
+        header("location:../projects/project_info.php");
+    }
+}
+
+//request of deleting an item is coming from the list of workers
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if (!empty($_POST['deleteWP'])){
+        $w_name = $_POST['name'];
+        $delete_wp = $conn->prepare("DELETE from worker_project WHERE w_name=:w_name
+            AND proj_id=:proj_id");
+        $delete_wp->execute(array(':w_name'=> $w_name,':proj_id'=>$proj_id));
+        header("location:../projects/workers_setup.php");
+        
+    }
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if (!empty($_POST['addToProject'])){
+        $w_name = $_POST['name'];
+        $insertWP = $conn->prepare("INSERT into worker_project(proj_id,w_name, contract) 
+        VALUES(:proj_id, :w_name, 'full-time')");
+        $insertWP->execute ( array (
+            ':proj_id' => $proj_id, ':w_name' => $w_name)
+        );
+        header("location:../projects/workers_setup.php");
+        
     }
 }
 
@@ -34,9 +66,7 @@ function clean_input($data) {
 $w_name = $role = $contract= $phone_no = $email = $country = $city = $post_code = $street = $street_no = "";
 $phone_noErr;
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if (!empty($_POST['back'])){
-        header("Location:../projects/project_info.php");
-    }
+  
     if(!empty($_POST['save_worker'])){    //for POST you use the name attribute
         $w_name = clean_input($_POST['worker_name']);
         $role =  clean_input($_POST['role']);
@@ -51,7 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         if (!is_numeric($phone_no)) {
             $phone_noErr = "Telephone must be a number.";
-            header("Location:../projects/workers_setup.php#phoneErr");
+            header("location:../projects/workers_setup.php#phoneErr");
         } else{
             try{
             $done;
@@ -78,33 +108,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     ':contract'=>$contract));
             if($done){
             $conn->commit();
-            header("Location:../projects/workers_setup.php");
+            header("location:../projects/workers_setup.php");
             } else{
-                header("Location:../projects/workers_setup.php#retry");
+                header("location:../projects/workers_setup.php#retry");
             }
            // header("Location:../projects/project_info.php");
             } catch (PDOException $e) {
                 $conn->rollBack();
                 echo $e->getMessage();
-                header("Location:../projects/workers_setup.php#retry");
+                header("location:../projects/workers_setup.php#retry");
             }
+            unset($_POST['save_worker']);
             
-        }
-        
+        }     
         
     }
-    
-    else 
-        //request of deleting an item is coming from the list of workers
-        if (!empty($_POST['delete'])){
-            $w_name = $_POST['name'];
-            $delete_wp = $conn->prepare("DELETE from worker_project WHERE w_name=:w_name
-            AND proj_id=:proj_id");
-            $delete_wp->execute(array(':w_name'=> $w_name,':proj_id'=>$proj_id));
-            header("Location:../projects/workers_setup.php");
-            
-        }
-    
   
 }
 

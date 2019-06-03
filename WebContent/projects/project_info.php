@@ -16,20 +16,12 @@ $conn = $instance->getConnection();
 // $proj_id='1';
 $proj_id;
 $err = "";
-
+$proj;
 
 // the user is in this page because he/she has just created a project
 if (isset($_SESSION['proj_id'])) {
     $proj_id = $_SESSION['proj_id'];
-    $stmt = $conn->prepare("SELECT * FROM project WHERE proj_id = :proj_id");
-    $stmt->bindParam(':proj_id', $proj_id);
-    try {
-        $stmt->execute();
-        $proj = $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        $err = $e->getMessage();
-        echo ("Error: " . $e->getMessage());
-    }
+    $proj = loadProject($proj_id);
 }else{
     header("location:../projects/new_project.php");
 }
@@ -41,15 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['info'])) {
         $proj_id = $_POST['id'];
         $_SESSION['proj_id'] = $proj_id;
-        $stmt = $conn->prepare("SELECT * FROM project WHERE proj_id = :proj_id");
-        $stmt->bindParam(':proj_id', $proj_id);
-        try {
-            $stmt->execute();
-            $proj = $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            $err = $e->getMessage();
-            echo ("Error: " . $e->getMessage());
-        }
+       $proj = loadProject($proj_id);
     }
 }
 
@@ -65,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $err = $e->getMessage();
             echo ("Error: " . $e->getMessage());
         }
+        $proj = loadProject($proj_id);
         unset($_POST['archive']);
     }
     if (isset($_POST['activate'])){
@@ -76,8 +61,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $err = $e->getMessage();
             echo ("Error: " . $e->getMessage());
         }
+        $proj = loadProject($proj_id);
         unset($_POST['activate']);
     }
+}
+
+function loadProject($proj_id){
+    global $conn,$err;
+    $stmt = $conn->prepare("SELECT * FROM project WHERE proj_id = :proj_id");
+    $stmt->bindParam(':proj_id', $proj_id);
+    try {
+        $stmt->execute();
+        $proj = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $proj;
+    } catch (PDOException $e) {
+        $err = $e->getMessage();
+        echo ("Error: " . $e->getMessage());
+    }
+    
 }
 
 ?>
@@ -184,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         			 	<input type="submit" name="archive" class="btn btn-primary" 
         			 		value =	"Archive">
         			 		
-        			 		<?php else:?>
+        			 <?php else:?>
         			 	
         			 	<input type="submit" name="activate" class="btn btn-primary" 
         			 		value =	"Reactivate">

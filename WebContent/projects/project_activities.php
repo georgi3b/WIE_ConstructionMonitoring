@@ -75,7 +75,7 @@ $(document).ready(function() {
 		<br>
     	<br>
     	<br>
-    	<div>
+    	<div  style = "margin:10px">
 		
 			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
