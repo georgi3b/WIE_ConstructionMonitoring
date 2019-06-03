@@ -65,7 +65,7 @@ if(isset($_SESSION['user_id'])){
             
               <div class="carousel-caption" id = "new_proj">
                 <h1>Create a new project</h1>
-                <button class="btn btn-primary Redirect"
+                <button class="btn btn-primary Redirect" style='display:none'
 						onclick="window.location='../projects/new_project.php'">New Project</button>
               </div>
             </div>

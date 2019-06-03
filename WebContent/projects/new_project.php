@@ -5,6 +5,12 @@ if(isset($_SESSION['user_id'])){
 }else{
     header("location:../start/index.php");
 }
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(!empty($_POST['back'])){
+        header("location:../projects/projects.php");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,11 +48,27 @@ if(isset($_SESSION['user_id'])){
 	<?php include '../navbars/navbar_active.php';?>
 	<br>
 	<br>
+	<br>
 	<div class="container justify-content-center align-items-center">
+	
+    
+    	<form  action="<?php echo $_SERVER["PHP_SELF"];?>" method="post" >
+    		<div class="form-row">
+    			<div class="col-md-2">
+        				<div class="col-1">
+						<input type="submit" class="btn btn-success" name="back"
+							value="❮ To list">
+					</div>
+        		</div>
+        		
+        		<div class="col-md-10">
+        			<h2>New Project</h2>
+        		</div>		
+    		</div>
+		</form>
+	
 	<div id="new_project">
-		<h2>New Project</h2>
-
-
+		
 		<form class="needs-validation form" novalidate method="post"
 			action="../projects/project_controller.php">
 			<div class="form-row">
@@ -120,9 +142,10 @@ if(isset($_SESSION['user_id'])){
 					<div class="" role="group">
 
 						<input type="submit" name="save_proj"
-							class="btn btn-success mr-1 ml-1" value="Save"> <input
+							class="btn btn-success mr-1 ml-1" value="Save"> 
+						<input
 							type="reset" name="reset_proj" class="btn btn-danger mr-1 ml-5"
-							value="Cancel">
+							value="Reset">
 
 
 					</div>

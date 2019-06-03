@@ -48,6 +48,6 @@ $(document).ready(function() {
     		$('<h1>').text('Please create a project').appendTo('#sec_last_proj');
         }
 	});
-		
-
+    $('<button>').attr({class:'btn btn-primary Redirect',
+        onclick:'window.location="../projects/new_project.php"'}).text('New Project').appendTo('#new_proj');
 });

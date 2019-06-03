@@ -51,22 +51,25 @@ $tasks = $stmt3->fetchAll();
 <script>
 $(document).ready(function() {
     var tasks =  <?php echo json_encode($tasks);?>;
-	
-    $.each(tasks, function(idx, obj) {
-    	$('<tr>').attr('id',obj.task_id).
-		  append($('<td>').attr('id','proj_id').text(obj.proj_id)).
-		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
-		  append($('<td>').attr('id','unit_name').text(obj.unit_name)).
-		  append($('<td>').attr('id','build_level').text(obj.build_level)).
-		  append($('<td>').attr('id','orientation').text(obj.orientation)).
-		  append($('<td>').attr('id','quantity').text(obj.quantity)).
-		  append($('<td>').
-      			append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
-      			.append($('<input>').attr({'name':'id','value':obj.proj_id,'type':'hidden'}))
-      			.append($('<input>').attr
-      	      			({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor project")))).
-			appendTo("#tasks_data tbody");
-		});
+	if(tasks.length!=0){
+		$('h4').hide();
+		$('#tasks').show();
+        $.each(tasks, function(idx, obj) {
+        	$('<tr>').attr('id',obj.task_id).
+    		  append($('<td>').attr('id','proj_id').text(obj.proj_id)).
+    		  append($('<td>').attr('id','work_type').text(obj.work_type_id)).
+    		  append($('<td>').attr('id','unit_name').text(obj.unit_name)).
+    		  append($('<td>').attr('id','build_level').text(obj.build_level)).
+    		  append($('<td>').attr('id','orientation').text(obj.orientation)).
+    		  append($('<td>').attr('id','quantity').text(obj.quantity)).
+    		  append($('<td>').
+          			append($('<form>').attr({'method':'post','action':'../monitoring/monitoring.php'})
+          			.append($('<input>').attr({'name':'id','value':obj.proj_id,'type':'hidden'}))
+          			.append($('<input>').attr
+          	      			({'name':'mon','type': 'submit','class':'btn btn-outline-primary'}).val("monitor project")))).
+    			appendTo("#tasks_data tbody");
+    		});
+	}
 });
 </script>
 <title>Tasks</title>
@@ -92,8 +95,9 @@ $(document).ready(function() {
 			</form>
 		
 		</div>
+    	<h4>This webpage is still under construction.</h4>
+    	<div id="tasks" style = "display:none">
     	
-    	<div id="tasks">
     	<table class="table" id="tasks_data">
 			<thead>
 				<tr>
