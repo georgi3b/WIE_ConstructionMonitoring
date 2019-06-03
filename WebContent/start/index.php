@@ -31,7 +31,7 @@ session_start();
 		
 		<div class="inner-cover" id="cover">
 			<h1 class="cover-heading">BuildUp</h1>
-			<h3>Company description under construction.</h3>
+			<h3>⚠🚧Company description under construction.🚧⚠</h3>
 			<p class="lead">
 				<a href="#" class="btn btn-lg btn-secondary" onclick="gotoRegister()">Get Started</a>
 			</p>

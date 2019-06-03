@@ -113,7 +113,7 @@ function loadProject($proj_id){
 
 	<div class="container-fluid  justify-content-center profile">
 
-		<div class="proj-info">
+		<div class="full-table">
 			
 				<?php if($_SERVER["REQUEST_METHOD"] === "POST"||isset($_SESSION['proj_id'])):?>
 					<?php if(isset($_POST['info'])||isset($_SESSION['proj_id'])): ?>
@@ -187,15 +187,13 @@ function loadProject($proj_id){
     			
     			
 			</div>
-			<h5 style="padding-top: 20px; padding-bottom: 20px">Location
-				information</h5>
+			<h4 style="padding-top: 20px; padding-bottom: 20px">Location
+				information</h4>
 			<hr></hr>
-			<div class="rowpt-4 pt-lg-0">
-				<div class="col-lg-1">
-					<p>Address:
-					
-					
-					<p>
+			<div class="row pt-4 pt-lg-0">
+				<div class="col-lg-1" style="margin-right:5rem;">
+					<h5 >Address:
+					</h5>
 				
 				</div>
 				<div class="col-lg-10">

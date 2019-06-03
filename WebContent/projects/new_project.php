@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     			<div class="col-md-2">
         				<div class="col-1">
 						<input type="submit" class="btn btn-success" name="back"
-							value="❮ To list">
+							value="❮ All Projects">
 					</div>
         		</div>
         		
