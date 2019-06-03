@@ -36,7 +36,8 @@ $work_types = $stmt2->fetchAll();
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="Anna Debiasi, Georgiana Bud">
-
+<link rel="stylesheet"
+	href="../styles/project_style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -65,7 +66,7 @@ $(document).ready(function() {
 		<br>
     	<br>
     	<br>
-    	<div>
+    	<div class="full-table">
 		
 			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
@@ -74,16 +75,16 @@ $(document).ready(function() {
 							value="❮ Back">
 					</div>
 					<div class="col-11">
-						<h3>Work types</h3>
+						<h2>Work types</h2>
 					</div>
 				</div>
 			</form>
 		
 	</div>
-    	<div>
+    	<div class="full-table">
     		<form>
     			<div class="form-row">
-    				<div class="col-md-9">
+    				<div class="col-md-12">
     					<table class="table" id="work_types">
     						<thead>
     							<tr>

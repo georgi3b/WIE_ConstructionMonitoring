@@ -44,7 +44,8 @@ $activities= $stmt->fetchAll();
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="Anna Debiasi, Georgiana Bud">
-
+<link rel="stylesheet"
+	href="../styles/project_style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -75,7 +76,7 @@ $(document).ready(function() {
 		<br>
     	<br>
     	<br>
-    	<div  style = "margin:10px">
+    	<div class="full-table">
 		
 			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
@@ -84,16 +85,16 @@ $(document).ready(function() {
 							value="❮ Back">
 					</div>
 					<div class="col-11">
-						<h3>Activities</h3>
+						<h2>Activities</h2>
 					</div>
 				</div>
 			</form>
 		
 	</div>
-    	<div>
+    	<div class="full-table">
     		<form>
     			<div class="form-row">
-    				<div class="col-md-9">
+    				<div class="col-md-12">
     					<table class="table" id="activities">
     						<thead>
     							<tr>

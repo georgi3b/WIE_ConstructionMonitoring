@@ -20,9 +20,10 @@ html, body {
 	height: 100%;
 }
 
-#project-table{
+.full-table{
 	margin:20px;
 }
+
 
 .projects>h2{
 	float:left;

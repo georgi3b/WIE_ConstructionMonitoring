@@ -38,7 +38,8 @@ $tasks = $stmt3->fetchAll();
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="Anna Debiasi, Georgiana Bud">
-
+<link rel="stylesheet"
+	href="../styles/project_style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -77,7 +78,7 @@ $(document).ready(function() {
 		<br>
     	<br>
     	<br>
-    	<div>
+    	<div class="full-table">
 		
 			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
@@ -93,7 +94,7 @@ $(document).ready(function() {
 		
 		</div>
     	
-    	<div id="tasks">
+    	<div class="full-table" id="tasks">
     	<table class="table" id="tasks_data">
 			<thead>
 				<tr>

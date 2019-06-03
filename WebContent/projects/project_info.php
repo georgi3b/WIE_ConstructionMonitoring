@@ -162,7 +162,7 @@ function loadProject($proj_id){
     			<form method = "post" action="../monitoring/monitoring.php">
     				<input name= "id" type="hidden" value='<?php echo($proj['proj_id'])?>'>
     				<?php  if($proj['active']=="true"): ?>
-    				<input name = "mon" type="submit" class="btn btn-primary spaced" style="margin-right: 3rem;" value="Monitor">
+    				<input name = "mon" type="submit" class="btn btn-success spaced" style="margin-right: 3rem;" value="Monitor">
     				<?php else:?>
 					<p>This project has been archived. Monitoring is not possible. </p>
 					<?php endif?>    				
@@ -170,12 +170,12 @@ function loadProject($proj_id){
         			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">	
         			<?php if($proj['active']=="true"):?>
     				
-        			 	<input type="submit" name="archive" class="btn btn-primary" 
+        			 	<input type="submit" name="archive" class="btn btn-danger" 
         			 		value =	"Archive">
         			 		
         			 <?php else:?>
         			 	
-        			 	<input type="submit" name="activate" class="btn btn-primary" 
+        			 	<input type="submit" name="activate" class="btn btn-success" 
         			 		value =	"Reactivate">
         			 	
         			 	<?php endif?>
@@ -208,7 +208,7 @@ function loadProject($proj_id){
 			</div>
 			<div class="row pt-4 pt-lg-0">
 
-				<div class="col-lg-3 buttons">
+				<div class="col-lg-3 col-md-6 buttons">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="workers">
@@ -216,7 +216,7 @@ function loadProject($proj_id){
 							onclick="window.location.href = '../projects/workers_setup.php';">Workers</button>
 					</div>
 				</div>
-				<div class="col-lg-3 buttons">
+				<div class="col-lg-3 col-md-6 buttons">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="Main working areas/types">
@@ -225,7 +225,7 @@ function loadProject($proj_id){
 							types</button>
 					</div>
 				</div>
-				<div class="col-lg-3 buttons">
+				<div class="col-lg-3 col-md-6 buttons">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="activities">
@@ -233,7 +233,7 @@ function loadProject($proj_id){
 						onclick="window.location.href = '../projects/project_activities.php'">Activities</button>
 					</div>
 				</div>
-				<div class="col-lg-3 buttons">
+				<div class="col-lg-3 col-md-6 buttons">
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="tasks">

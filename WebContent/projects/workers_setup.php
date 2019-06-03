@@ -96,7 +96,8 @@ $(document).ready(function() {
 	$('#new_worker').click(function() {
 		  $('#workers').toggle("slide");
 	      $('#new_worker_div').toggle("slide");
-	    
+	      if (this.value=="Add New Worker") this.value = "Workers";
+	      else this.value = "Add New Worker";
 	});
 
 	var workersProj = <?php echo json_encode($workersProj);?>;

@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])){
 <?php include '../navbars/navbar_active.php';?>
 <br>
 <br>
-<div id="project-table">
+<div class="full-table">
 		<div class="projects">
 			<h2>Projects</h2>
 			<button class="btn btn-success  Redirect" id="showForm" onclick="window.location='../projects/new_project.php'">New Project</button>
