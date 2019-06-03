@@ -76,6 +76,21 @@ $(document).ready(function() {
     	<br>
     	<br>
     	<div>
+		
+			<form action="../projects/worker_controller.php" method="post">
+				<div class="form-row">
+					<div class="col-1">
+						<input type="submit" class="btn btn-success" name="back"
+							value="❮ Back">
+					</div>
+					<div class="col-11">
+						<h3>Activities</h3>
+					</div>
+				</div>
+			</form>
+		
+	</div>
+    	<div>
     		<form>
     			<div class="form-row">
     				<div class="col-md-9">

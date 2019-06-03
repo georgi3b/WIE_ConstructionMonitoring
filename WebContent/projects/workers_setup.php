@@ -10,7 +10,7 @@ if(isset($_SESSION['user_id'])){
     header("location:../start/index.php");
 }
 
-$proj_id = 80;
+$proj_id;
 // project id is obtained from session or from page before
 if (isset($_SESSION['proj_id'])) {
     $proj_id = $_SESSION['proj_id'];
@@ -22,6 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $proj_id = $_POST['id'];
     }
 }*/
+
+// get the workers that were inserted by this user (PRIVACY)
+$sql2 = "SELECT * FROM project WHERE proj_id = :proj_id";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->bindParam(':proj_id', $proj_id);
+$stmt2->execute();
+$proj = $stmt2->fetch(PDO::FETCH_ASSOC);
 
 // get the workers that were inserted by this user (PRIVACY)
 $sql3 = "SELECT * FROM worker WHERE u_mail= :u_mail";
@@ -62,7 +69,7 @@ $workersProj = $stmt4->fetchAll();
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../scripts/form_validation_functions.js"></script>
-<title>Werkers</title>
+<title>Workers</title>
 <script>
 $(document).ready(function() {
 
@@ -133,7 +140,8 @@ $(document).ready(function() {
 		<?php 
 
     		if (isset($_SESSION['user_id'])){
-    		  include '../navbars/navbar_active.php';}
+    		  include '../navbars/navbar_active.php';
+    		}
     		else{
     		  include '../navbars/navbar_cover.php';
     		}
@@ -142,18 +150,19 @@ $(document).ready(function() {
 	<br>
 	<br>
 	<div>
-		<h3>Workers for project with id: '<?php echo($proj_id);?>'</h3>
-		<div>
+		
 			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
-					<div class="col-9">
+					<div class="col-1">
 						<input type="submit" class="btn btn-success" name="back"
-							value="Back to project">
-						
+							value="❮ Back">
+					</div>
+					<div class="col-11">
+						<h3><?php echo($proj['proj_name']); ?>: Workers</h3>
 					</div>
 				</div>
 			</form>
-		</div>
+		
 	</div>
 	<br>
 	<div id="workers">

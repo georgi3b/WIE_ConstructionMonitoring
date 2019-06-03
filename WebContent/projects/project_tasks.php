@@ -77,18 +77,22 @@ $(document).ready(function() {
 		<br>
     	<br>
     	<br>
-    	<h3>Tasks for project with id: '<?php echo($proj_id);?>'</h3>
     	<div>
+		
 			<form action="../projects/worker_controller.php" method="post">
 				<div class="form-row">
-					<div class="col-9">
+					<div class="col-1">
 						<input type="submit" class="btn btn-success" name="back"
-							value="Back to project">
-						
+							value="❮ Back">
+					</div>
+					<div class="col-11">
+						<h3>Tasks</h3>
 					</div>
 				</div>
 			</form>
+		
 		</div>
+    	
     	<div id="tasks">
     	<table class="table" id="tasks_data">
 			<thead>

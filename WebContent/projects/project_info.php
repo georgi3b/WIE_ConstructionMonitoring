@@ -170,7 +170,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     			<div class="col-md-6">
     			<form method = "post" action="../monitoring/monitoring.php">
     				<input name= "id" type="hidden" value='<?php echo($proj['proj_id'])?>'>
-    				<input name = "mon" type="submit" class="btn btn-primary" value="monitor">
+    				<?php  if($proj['active']=="true"): ?>
+    				<input name = "mon" type="submit" class="btn btn-primary" value="Monitor">
+    				<?php else:?>
+					<p>This project has been archived. Monitoring is not possible. </p>
+					<?php endif?>    				
     			</form>
         		</div>
         		<div class="col-md-6 pt-4 pt-md-0 buttons">		
