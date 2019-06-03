@@ -109,49 +109,48 @@ function loadProject($proj_id){
 <body>
 		
 	<?php include '../navbars/navbar_active.php';?>
-	<br><br>
+	<br>
 
-	<div class="container  justify-content-center profile">
+	<div class="container-fluid  justify-content-center profile">
 
 		<div class="proj-info">
 			
 				<?php if($_SERVER["REQUEST_METHOD"] === "POST"||isset($_SESSION['proj_id'])):?>
 					<?php if(isset($_POST['info'])||isset($_SESSION['proj_id'])): ?>
-						<h4 style="padding-top: 20px; padding-bottom: 20px"><?php echo($proj['proj_name']);?>
-							 - information</h4>
+						<h1 style="padding-top: 20px; padding-bottom: 20px"><?php echo($proj['proj_name']);?>
+							 - information</h1>
 			<span><?php echo($err);?></span>
 			<hr></hr>
-			<div class="row">
-				<div class="col-lg-1 bold">
-					<p>ProjectID:
-					<p>
-				
+			
+			<div class="row pt-4 pt-lg-0">
+				<div class="col-lg-12">
+					<?php echo($proj['description']); ?> 
 				</div>
-				<div class="col-lg-2">
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-lg-2 mobile-row">
+					<h5>ProjectID:	
+					</h5>
+
 					<p><?php echo ($proj_id); ?></p>
 				</div>
-				<div class="col-lg-1 bold">
-					<p>Company:
-					<p>
+				<div class="col-lg-2 mobile-row">
+					<h5>Company:	
+					</h5>
 				
-				</div>
-				<div class="col-lg-2">
 					<p><?php echo($proj['company']); ?></p>
 				</div>
-				<div class="col-lg-1 bold">
-					<p>Type:
-					<p>
+				<div class="col-lg-2 mobile-row">
+					<h5>Type:
+					</h5>
 				
-				</div>
-				<div class="col-lg-2">
 					<p><?php echo($proj['proj_type']); ?></p>
 				</div>
 				
-				<div class="col-lg-1 bold">
-					<p>Status:<p>
+				<div class="col-lg-3 mobile-row">
+					<h5>Status:</h5>
 				
-				</div>
-				<div class="col-lg-2">
     				<?php if($proj['active']=="true"):?>
     					<p>Active</p>
     				<?php else:?>
@@ -159,26 +158,15 @@ function loadProject($proj_id){
     				<?php endif?>
 					
 				</div>
-			</div>
-			<div class="row pt-4 pt-lg-0">
-				<div class="col-lg-12">
-					<?php echo($proj['description']); ?> 
-				</div>
-			</div>
-			<br>
-			<div class="row pt-4 pt-lg-0">
-    			
-    			<div class="col-md-6">
+				<div class="col-lg-3 button-row row">
     			<form method = "post" action="../monitoring/monitoring.php">
     				<input name= "id" type="hidden" value='<?php echo($proj['proj_id'])?>'>
     				<?php  if($proj['active']=="true"): ?>
-    				<input name = "mon" type="submit" class="btn btn-primary" value="Monitor">
+    				<input name = "mon" type="submit" class="btn btn-primary spaced" style="margin-right: 3rem;" value="Monitor">
     				<?php else:?>
 					<p>This project has been archived. Monitoring is not possible. </p>
 					<?php endif?>    				
     			</form>
-        		</div>
-        		<div class="col-md-6 pt-4 pt-md-0 buttons">		
         			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">	
         			<?php if($proj['active']=="true"):?>
     				
@@ -193,6 +181,11 @@ function loadProject($proj_id){
         			 	<?php endif?>
 					</form>		
 				</div>
+			</div>
+			
+			<div class="row pt-4 pt-lg-0">
+    			
+    			
 			</div>
 			<h5 style="padding-top: 20px; padding-bottom: 20px">Location
 				information</h5>
@@ -219,7 +212,7 @@ function loadProject($proj_id){
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="workers">
-						<button type="submit" name="workers" class="btn btn-primary"
+						<button type="submit" name="workers" class="btn btn-primary form-control"
 							onclick="window.location.href = '../projects/workers_setup.php';">Workers</button>
 					</div>
 				</div>
@@ -227,7 +220,7 @@ function loadProject($proj_id){
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="Main working areas/types">
-						<button type="submit" name="work_types" class="btn btn-primary" 
+						<button type="submit" name="work_types" class="btn btn-primary form-control" 
 						onclick="window.location.href = '../projects/../projects/project_work_types.php'">Work
 							types</button>
 					</div>
@@ -236,7 +229,7 @@ function loadProject($proj_id){
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="activities">
-						<button type="submit" name="activities" class="btn btn-primary" 
+						<button type="submit" name="activities" class="btn btn-primary form-control" 
 						onclick="window.location.href = '../projects/project_activities.php'">Activities</button>
 					</div>
 				</div>
@@ -244,7 +237,7 @@ function loadProject($proj_id){
 					<h5 style="padding-top: 20px; padding-bottom: 20px"></h5>
 					<hr></hr>
 					<div id="tasks">
-						<button type="submit" name="tasks" class="btn btn-primary"
+						<button type="submit" name="tasks" class="btn btn-primary form-control"
 						onclick="window.location.href = '../projects/project_tasks.php'">Work
 							units/Tasks</button>
 					</div>

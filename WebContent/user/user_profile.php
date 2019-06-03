@@ -44,23 +44,22 @@ $projects = $stmt->fetchAll();
 	<div
 		class="container d-flex align-items-center justify-content-center min-vh-100 profile">
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-5">
 				<div
 					class="user-img" style="text-align: center">
 					<img class="rounded-circle" src="../images/user_icon.png"
-						alt="Image of Anna Debiasi" width="220" height="220">
+						alt="User Image" width="350" height="350">
 
 				</div>
 			</div>
-			<!-- /.col-lg-4 -->
-			<div class="col-lg-8">
+			<div class="col-lg-7">
 				<div class="user-info">
-					<h5 style="padding-top: 20px; padding-bottom: 20px">Personal
-						information</h5>
+					<h3 style="padding-top: 20px; padding-bottom: 20px">Personal
+						information</h3>
 					<hr></hr>
 					<div class="row">
 						<div class="col-lg-6">
-							<h6>Name:</h6>
+							<h5>Name:</h5>
 						</div>
 						<div class="col-lg-5">
 							<p><?php echo($id->u_name);?></p>
@@ -68,13 +67,13 @@ $projects = $stmt->fetchAll();
 					</div>
 					<div class="row">
 						<div class="col-lg-6">
-							<h6>Email:</h6>
+							<h5>Email:</h5>
 						</div>
 						<div class="col-lg-5">
 							<p><?php echo($id->u_mail);?></p>
 						</div>
 					</div>
-					<h5 style="padding-top: 20px; padding-bottom: 20px">Supervised Projects</h5>
+					<h3 style="padding-top: 20px; padding-bottom: 20px">Supervised Projects</h3>
 					<hr></hr>
 						<?php if (sizeof($projects)>0):?>
 						<div class="col-lg-12" style="padding: -20px;">

@@ -38,47 +38,48 @@ if(isset($_SESSION['user_id'])){
 		}
 	?>
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-          <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-          <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item">
-            <div class="container d-flex align-items-center justify-content-center min-vh-100">
-            
-              <div class="carousel-caption text-left" id = "last_proj">
-               
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container d-flex align-items-center justify-content-center min-vh-100">
-            
-              <div class="carousel-caption text-left" id="sec_last_proj">
-                
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item active">
-            <div class="container d-flex align-items-center justify-content-center min-vh-100">
-            
-              <div class="carousel-caption" id = "new_proj">
-                <h1>Create a new project</h1>
-                <button class="btn btn-primary Redirect"
-						onclick="window.location='../projects/new_project.php'">New Project</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+		</ol>
+		<div class="carousel-inner" style="background-image: url(../images/worker.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+			<div class="carousel-item">
+				<div
+					class="container d-flex align-items-center justify-content-center min-vh-100">
+
+					<div class="carousel-caption text-left" id="last_proj"></div>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div
+					class="container d-flex align-items-center justify-content-center min-vh-100">
+
+					<div class="carousel-caption text-left" id="sec_last_proj"></div>
+				</div>
+			</div>
+			<div class="carousel-item active">
+				<div
+					class="container d-flex align-items-center justify-content-center min-vh-100">
+
+					<div class="carousel-caption" id="new_proj">
+						<h1>Create a new project</h1>
+						<button class="btn btn-primary Redirect"
+							onclick="window.location='../projects/new_project.php'">New
+							Project</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#myCarousel" role="button"
+			data-slide="prev"> <span class="carousel-control-prev-icon"
+			aria-hidden="true"></span> <span class="sr-only">Previous</span>
+		</a> <a class="carousel-control-next" href="#myCarousel" role="button"
+			data-slide="next"> <span class="carousel-control-next-icon"
+			aria-hidden="true"></span> <span class="sr-only">Next</span>
+		</a>
+	</div>
 </body>
 </html>
