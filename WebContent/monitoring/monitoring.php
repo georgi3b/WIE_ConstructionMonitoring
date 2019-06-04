@@ -42,6 +42,22 @@ $stmt3->bindParam(':proj_id', $proj_id);
 $stmt3->execute();
 $tasks = $stmt3->fetchAll();
 
+
+$sql = "
+SELECT A.activity_id,A.code, A.description, A.work_type_id, WT.description as w_description
+FROM activity A, work_type WT, project P
+WHERE A.work_type_id = WT.work_type_id
+    AND WT.proj_type = P.proj_type
+    AND P.proj_id=:proj_id";
+
+
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':proj_id', $proj_id);
+
+$stmt->execute();
+$activities= $stmt->fetchAll();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -76,6 +92,16 @@ $(document).ready(function() {
 			text : obj.unit_name
 		}));
      });
+
+  
+    var activities =  <?php echo json_encode($activities);?>;
+    $.each(activities, function(idx, obj) {
+		$('#activities').append($('<option>', { 
+			value: obj.code,
+			text : obj.code + ": "+ obj.description
+		}));	
+	});
+        
 });
 </script>
 <title>Tasks</title>
@@ -86,6 +112,7 @@ $(document).ready(function() {
 		<br>
 	<br>
 	<br>
+<div class="container justify-content-center align-items-center">
 	<?php if($proj['proj_type']=="BIM-FR"):?>
 	<h3>Working units to be monitored for BIM model:</h3>
 	<form>
@@ -134,20 +161,59 @@ $(document).ready(function() {
 				<label for="note">Note</label> <input type="text" name="note"
 					placeholder="" value="" class="form-control" required>
 			</div>
-			<div class="col-md-3 w-100">
+			<div class="col-md-6 w-100">
 				<label for="website">Website</label> <input type="text"
 					name="website" placeholder="" value="" class="form-control"
 					required>
 			</div>
 		</div>
 		<br>
+		
+
 		<div class="row">
+			<div class="col-md-4 w-100">
+			
+				<label for="activty">Activity</label> <select
+					id="activities" name="activity" class="form-control" required>
+				</select>
+			</div>
+			<div  class="col-md-4 w-100">
+				<label for="quantity">Quantity</label>
+				<input id="quantity" name ="quantity" class="form-control" required>
+			</div>
+			<div  class="col-md-4 w-100">
+				<label for="progress">Progress</label>
+				<select id = "progress" name = progress class="form-control">
+				<?php for ($x = 0; $x <= 100; $x++){
+							echo"<option value=".$x.">".$x."%</option>";
+						}?>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div  class="col-md-12 w-100">
+				<label for="delay">Delay reason</label>
+				<input id="delay" name ="delay" class="form-control" required>
+			</div>
+		</div>
+		<div class="row">
+			<div  class="col-md-12 w-100">
+				<label for="noncomp">Non completion reason</label>
+				<input id="noncomp" name ="noncomp" class="form-control" required>
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<div  class="col-md-12 w-100">
 			<input type="submit" class="btn btn-success" value="Save info">
+			</div>
 		</div>
 	</form>
 	
 	<?php else:?>
 	<h3>Monitoring form under construction... We apologize for the inconvenience.</h3>
 	<?php endif?>
+	
+	</div>
 </body>
 </html>
